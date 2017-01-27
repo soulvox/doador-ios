@@ -8,12 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		0819F5DC1E3AA260006D6CBD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819F5DB1E3AA260006D6CBD /* AppDelegate.swift */; };
-		0819F5DE1E3AA260006D6CBD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819F5DD1E3AA260006D6CBD /* ViewController.swift */; };
-		0819F5E11E3AA260006D6CBD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0819F5DF1E3AA260006D6CBD /* Main.storyboard */; };
 		0819F5E31E3AA260006D6CBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0819F5E21E3AA260006D6CBD /* Assets.xcassets */; };
 		0819F5E61E3AA260006D6CBD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0819F5E41E3AA260006D6CBD /* LaunchScreen.storyboard */; };
 		0819F5F11E3AA260006D6CBD /* DoadorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819F5F01E3AA260006D6CBD /* DoadorTests.swift */; };
 		0819F5FC1E3AA260006D6CBD /* DoadorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819F5FB1E3AA260006D6CBD /* DoadorUITests.swift */; };
+		08F23B9D1E3AA6FD00D23224 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23B9C1E3AA6FD00D23224 /* AppCoordinator.swift */; };
+		08F23B9F1E3AA7C700D23224 /* DonatorTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23B9E1E3AA7C700D23224 /* DonatorTypeViewController.swift */; };
+		08F23BA11E3AA8C700D23224 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23BA01E3AA8C700D23224 /* Resources.swift */; };
+		08F23BA31E3AB27B00D23224 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23BA21E3AB27B00D23224 /* FormViewController.swift */; };
+		08F23BA51E3ABA7100D23224 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23BA41E3ABA7100D23224 /* User.swift */; };
+		08F23BA71E3ABBEA00D23224 /* RecordAudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23BA61E3ABBEA00D23224 /* RecordAudioViewController.swift */; };
+		08F23BA91E3ABEF900D23224 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23BA81E3ABEF900D23224 /* AudioRecorder.swift */; };
+		59A02430778AD6475E3634D4 /* Pods_Doador.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F491D6AFA7D63C845EE0711D /* Pods_Doador.framework */; };
+		B13418A78DC0B4B0670927A9 /* Pods_DoadorUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF03FF6C3B56E958C84F5C2 /* Pods_DoadorUITests.framework */; };
+		DEC88FBFEEE8C14F6E329215 /* Pods_DoadorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B79A2FD47F722921D798981A /* Pods_DoadorTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,10 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0674CE8EC66E5CBBA56E9956 /* Pods-DoadorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoadorTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DoadorTests/Pods-DoadorTests.debug.xcconfig"; sourceTree = "<group>"; };
 		0819F5D81E3AA260006D6CBD /* Doador.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Doador.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0819F5DB1E3AA260006D6CBD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0819F5DD1E3AA260006D6CBD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		0819F5E01E3AA260006D6CBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0819F5E21E3AA260006D6CBD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0819F5E51E3AA260006D6CBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0819F5E71E3AA260006D6CBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,6 +54,21 @@
 		0819F5F71E3AA260006D6CBD /* DoadorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoadorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0819F5FB1E3AA260006D6CBD /* DoadorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoadorUITests.swift; sourceTree = "<group>"; };
 		0819F5FD1E3AA260006D6CBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		08F23B9C1E3AA6FD00D23224 /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		08F23B9E1E3AA7C700D23224 /* DonatorTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonatorTypeViewController.swift; sourceTree = "<group>"; };
+		08F23BA01E3AA8C700D23224 /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
+		08F23BA21E3AB27B00D23224 /* FormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
+		08F23BA41E3ABA7100D23224 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		08F23BA61E3ABBEA00D23224 /* RecordAudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordAudioViewController.swift; sourceTree = "<group>"; };
+		08F23BA81E3ABEF900D23224 /* AudioRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		2203B9F7EEB42E88BCA65CD7 /* Pods-DoadorUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoadorUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DoadorUITests/Pods-DoadorUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		2782B315112193122D9DAFFA /* Pods-Doador.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Doador.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Doador/Pods-Doador.debug.xcconfig"; sourceTree = "<group>"; };
+		391D5C185CE2F324EF5140DA /* Pods-DoadorUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoadorUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DoadorUITests/Pods-DoadorUITests.release.xcconfig"; sourceTree = "<group>"; };
+		6DF03FF6C3B56E958C84F5C2 /* Pods_DoadorUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoadorUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B79A2FD47F722921D798981A /* Pods_DoadorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoadorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CCCA94766C54B16C09B65B81 /* Pods-DoadorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoadorTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DoadorTests/Pods-DoadorTests.release.xcconfig"; sourceTree = "<group>"; };
+		E14102F717084EA902B6ECCF /* Pods-Doador.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Doador.release.xcconfig"; path = "Pods/Target Support Files/Pods-Doador/Pods-Doador.release.xcconfig"; sourceTree = "<group>"; };
+		F491D6AFA7D63C845EE0711D /* Pods_Doador.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Doador.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59A02430778AD6475E3634D4 /* Pods_Doador.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEC88FBFEEE8C14F6E329215 /* Pods_DoadorTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B13418A78DC0B4B0670927A9 /* Pods_DoadorUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +106,8 @@
 				0819F5EF1E3AA260006D6CBD /* DoadorTests */,
 				0819F5FA1E3AA260006D6CBD /* DoadorUITests */,
 				0819F5D91E3AA260006D6CBD /* Products */,
+				0B60A47D4F9584BAA7C46CB3 /* Pods */,
+				76527DE48530C5A7D19D098C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,8 +125,13 @@
 			isa = PBXGroup;
 			children = (
 				0819F5DB1E3AA260006D6CBD /* AppDelegate.swift */,
-				0819F5DD1E3AA260006D6CBD /* ViewController.swift */,
-				0819F5DF1E3AA260006D6CBD /* Main.storyboard */,
+				08F23B9C1E3AA6FD00D23224 /* AppCoordinator.swift */,
+				08F23B9E1E3AA7C700D23224 /* DonatorTypeViewController.swift */,
+				08F23BA21E3AB27B00D23224 /* FormViewController.swift */,
+				08F23BA61E3ABBEA00D23224 /* RecordAudioViewController.swift */,
+				08F23BA81E3ABEF900D23224 /* AudioRecorder.swift */,
+				08F23BA41E3ABA7100D23224 /* User.swift */,
+				08F23BA01E3AA8C700D23224 /* Resources.swift */,
 				0819F5E21E3AA260006D6CBD /* Assets.xcassets */,
 				0819F5E41E3AA260006D6CBD /* LaunchScreen.storyboard */,
 				0819F5E71E3AA260006D6CBD /* Info.plist */,
@@ -125,6 +157,29 @@
 			path = DoadorUITests;
 			sourceTree = "<group>";
 		};
+		0B60A47D4F9584BAA7C46CB3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2782B315112193122D9DAFFA /* Pods-Doador.debug.xcconfig */,
+				E14102F717084EA902B6ECCF /* Pods-Doador.release.xcconfig */,
+				0674CE8EC66E5CBBA56E9956 /* Pods-DoadorTests.debug.xcconfig */,
+				CCCA94766C54B16C09B65B81 /* Pods-DoadorTests.release.xcconfig */,
+				2203B9F7EEB42E88BCA65CD7 /* Pods-DoadorUITests.debug.xcconfig */,
+				391D5C185CE2F324EF5140DA /* Pods-DoadorUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		76527DE48530C5A7D19D098C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F491D6AFA7D63C845EE0711D /* Pods_Doador.framework */,
+				B79A2FD47F722921D798981A /* Pods_DoadorTests.framework */,
+				6DF03FF6C3B56E958C84F5C2 /* Pods_DoadorUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +187,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0819F6001E3AA260006D6CBD /* Build configuration list for PBXNativeTarget "Doador" */;
 			buildPhases = (
+				3A8992B85A1D2D9A1838C6B2 /* [CP] Check Pods Manifest.lock */,
 				0819F5D41E3AA260006D6CBD /* Sources */,
 				0819F5D51E3AA260006D6CBD /* Frameworks */,
 				0819F5D61E3AA260006D6CBD /* Resources */,
+				E88DEE568BA883D1EF5B20A7 /* [CP] Embed Pods Frameworks */,
+				902799734B7ED17817E1C78C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -149,9 +207,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0819F6031E3AA260006D6CBD /* Build configuration list for PBXNativeTarget "DoadorTests" */;
 			buildPhases = (
+				E761147EF79C44950E34F5FE /* [CP] Check Pods Manifest.lock */,
 				0819F5E81E3AA260006D6CBD /* Sources */,
 				0819F5E91E3AA260006D6CBD /* Frameworks */,
 				0819F5EA1E3AA260006D6CBD /* Resources */,
+				2174FFE14D9163F9F3B70E41 /* [CP] Embed Pods Frameworks */,
+				0585BB36DFB5980D2FF2D398 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -167,9 +228,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0819F6061E3AA260006D6CBD /* Build configuration list for PBXNativeTarget "DoadorUITests" */;
 			buildPhases = (
+				69D04BBCCD62457A9DBE7292 /* [CP] Check Pods Manifest.lock */,
 				0819F5F31E3AA260006D6CBD /* Sources */,
 				0819F5F41E3AA260006D6CBD /* Frameworks */,
 				0819F5F51E3AA260006D6CBD /* Resources */,
+				FCBAE0054BB78FB97F0F9310 /* [CP] Embed Pods Frameworks */,
+				B1B8F6C95A8676688DFE55B6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -234,7 +298,6 @@
 			files = (
 				0819F5E61E3AA260006D6CBD /* LaunchScreen.storyboard in Resources */,
 				0819F5E31E3AA260006D6CBD /* Assets.xcassets in Resources */,
-				0819F5E11E3AA260006D6CBD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,12 +317,156 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0585BB36DFB5980D2FF2D398 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DoadorTests/Pods-DoadorTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2174FFE14D9163F9F3B70E41 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DoadorTests/Pods-DoadorTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3A8992B85A1D2D9A1838C6B2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		69D04BBCCD62457A9DBE7292 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		902799734B7ED17817E1C78C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Doador/Pods-Doador-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B1B8F6C95A8676688DFE55B6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DoadorUITests/Pods-DoadorUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E761147EF79C44950E34F5FE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E88DEE568BA883D1EF5B20A7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Doador/Pods-Doador-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FCBAE0054BB78FB97F0F9310 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DoadorUITests/Pods-DoadorUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0819F5D41E3AA260006D6CBD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0819F5DE1E3AA260006D6CBD /* ViewController.swift in Sources */,
+				08F23B9F1E3AA7C700D23224 /* DonatorTypeViewController.swift in Sources */,
+				08F23BA11E3AA8C700D23224 /* Resources.swift in Sources */,
+				08F23BA51E3ABA7100D23224 /* User.swift in Sources */,
+				08F23B9D1E3AA6FD00D23224 /* AppCoordinator.swift in Sources */,
+				08F23BA31E3AB27B00D23224 /* FormViewController.swift in Sources */,
+				08F23BA71E3ABBEA00D23224 /* RecordAudioViewController.swift in Sources */,
+				08F23BA91E3ABEF900D23224 /* AudioRecorder.swift in Sources */,
 				0819F5DC1E3AA260006D6CBD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,14 +503,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		0819F5DF1E3AA260006D6CBD /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0819F5E01E3AA260006D6CBD /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		0819F5E41E3AA260006D6CBD /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -410,6 +609,7 @@
 		};
 		0819F6011E3AA260006D6CBD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2782B315112193122D9DAFFA /* Pods-Doador.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
@@ -423,6 +623,7 @@
 		};
 		0819F6021E3AA260006D6CBD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E14102F717084EA902B6ECCF /* Pods-Doador.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
@@ -436,6 +637,7 @@
 		};
 		0819F6041E3AA260006D6CBD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0674CE8EC66E5CBBA56E9956 /* Pods-DoadorTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -450,6 +652,7 @@
 		};
 		0819F6051E3AA260006D6CBD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CCCA94766C54B16C09B65B81 /* Pods-DoadorTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -464,6 +667,7 @@
 		};
 		0819F6071E3AA260006D6CBD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2203B9F7EEB42E88BCA65CD7 /* Pods-DoadorUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = DoadorUITests/Info.plist;
@@ -477,6 +681,7 @@
 		};
 		0819F6081E3AA260006D6CBD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 391D5C185CE2F324EF5140DA /* Pods-DoadorUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = DoadorUITests/Info.plist;
