@@ -40,6 +40,8 @@ final class DonatorTypeViewController: UIViewController {
         super.viewDidLoad()
         
         setupSubviews()
+        
+        view.backgroundColor = UIColor.white
     }
     
     override func viewWillAppear(_ animated: Bool) {

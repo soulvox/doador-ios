@@ -20,8 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = appCoordinator.rootViewController
         window?.makeKeyAndVisible()
         
-        UIView.appearance().backgroundColor = UIColor.white
-        
         return true
     }
 }

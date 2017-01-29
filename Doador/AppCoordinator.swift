@@ -11,7 +11,9 @@ import Keith
 
 final class AppCoordinator {
     let rootViewController: UIViewController
-    var navigationController: UINavigationController?
+    
+    fileprivate var navigationController: UINavigationController?
+    fileprivate var formCoordinator: FormCoordinator?
     
     init() {
         let donatorTypeViewController = DonatorTypeViewController()
@@ -22,25 +24,14 @@ final class AppCoordinator {
 
 extension AppCoordinator: DonatorTypeViewControllerDelegate {
     func donateVoice() {
-        let formViewController = FormViewController()
-        formViewController.delegate = self
+        self.navigationController = UINavigationController()
         
-        self.navigationController = UINavigationController(rootViewController: formViewController)
-        self.rootViewController.show(navigationController!, sender: nil)
-    }
-}
-
-extension AppCoordinator: FormViewControllerDelegate {
-    func cancel() {
-        // TODO: Fix this smelly thing
-        self.navigationController?.viewControllers.first?.dismiss(animated: true, completion: nil)
-    }
-    
-    func submit(user: User) {
-        let audioRecorder = AudioRecorder()
-        let playbackController = PlaybackController()
-        let recordAudioViewController = RecordAudioViewController(audioRecorder: audioRecorder, playbackController: playbackController)
-        audioRecorder.delegate = recordAudioViewController
-        self.navigationController?.pushViewController(recordAudioViewController, animated: true)
+        guard let navigationController = navigationController else { return }
+        
+        self.formCoordinator = FormCoordinator(navigationController: navigationController)
+        let formViewController = formCoordinator?.viewController
+        
+        navigationController.show(formViewController!, sender: nil)
+        self.rootViewController.show(navigationController, sender: nil)
     }
 }

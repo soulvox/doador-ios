@@ -64,6 +64,8 @@ final class RecordAudioViewController: UIViewController {
         super.viewDidLoad()
         
         setupSubviews()
+        
+        view.backgroundColor = UIColor.white
     }
     
     private func setupSubviews() {
