@@ -20,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = appCoordinator.rootViewController
         window?.makeKeyAndVisible()
         
+        window?.tintColor = Resources.Colors.tint.color
+        
         return true
     }
 }

@@ -10,41 +10,28 @@ import UIKit
 import Keith
 
 final class AppCoordinator {
-    let rootViewController: UIViewController
     
-    fileprivate var navigationController: UINavigationController?
+    let rootViewController: UIViewController
+    let navigationController: UINavigationController
+    
     fileprivate var formCoordinator: FormCoordinator?
     fileprivate var recordAudioCoordinator: RecordAudioCoordinator?
     
     init() {
-        let donatorTypeViewController = DonatorTypeViewController()
-        self.rootViewController = donatorTypeViewController
-        donatorTypeViewController.delegate = self
+        let mainViewController = MainViewController()
+        self.rootViewController = mainViewController
+        self.navigationController = UINavigationController()
+        mainViewController.delegate = self
     }
 }
 
-extension AppCoordinator: DonatorTypeViewControllerDelegate {
+extension AppCoordinator: MainViewControllerDelegate {
     func donateVoice() {
-        self.navigationController = UINavigationController()
-        
-        guard let navigationController = navigationController else { return }
-        
         self.formCoordinator = FormCoordinator(navigationController: navigationController)
-        self.formCoordinator?.delegate = self
-        
-        let formViewController = formCoordinator?.viewController
-        
-        navigationController.show(formViewController!, sender: nil)
         self.rootViewController.show(navigationController, sender: nil)
     }
-}
-
-extension AppCoordinator: FormCoordinatorDelegate {
-    func submit(personalData: PersonalData, voiceData: VoiceData, contactData: ContactData) {
-        self.recordAudioCoordinator = RecordAudioCoordinator()
+    
+    func findDonator() {
         
-        guard let recordAudioViewController = recordAudioCoordinator?.viewController else { return }
-        
-        self.navigationController?.show(recordAudioViewController, sender: nil)
     }
 }

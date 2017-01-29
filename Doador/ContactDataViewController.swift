@@ -9,7 +9,6 @@
 import UIKit
 
 protocol ContactDataViewControllerDelegate: class {
-    func dismissContactDataViewController()
     func submit(contactData: ContactData)
 }
 
@@ -18,12 +17,7 @@ final class ContactDataViewController: UIViewController {
     weak var delegate: ContactDataViewControllerDelegate?
     
     private let containerStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.distribution = .fill
-        stackView.alignment = .fill
-        stackView.axis = .vertical
-        stackView.spacing = 20
-        return stackView
+        return UIStackView.verticalContainer
     }()
     
     private let emailTextField: UITextField = {
@@ -44,22 +38,20 @@ final class ContactDataViewController: UIViewController {
         return textField
     }()
     
-    private lazy var dismissButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "Voltar", style: .done, target: self, action: #selector(dismissContactDataViewController))
-        return button
-    }()
-    
     private lazy var continueButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: "Continuar", style: .done, target: self, action: #selector(submit))
         return button
     }()
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupSubviews()
-        
-        view.backgroundColor = UIColor.white
+        setupAppearance()
     }
     
     private func setupSubviews() {
@@ -74,12 +66,11 @@ final class ContactDataViewController: UIViewController {
         containerStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         containerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         
-        navigationItem.leftBarButtonItem = dismissButton
         navigationItem.rightBarButtonItem = continueButton
     }
     
-    @objc private func dismissContactDataViewController() {
-        delegate?.dismissContactDataViewController()
+    private func setupAppearance() {
+        view.backgroundColor = Resources.Colors.tint.color
     }
     
     @objc private func submit() {

@@ -9,7 +9,6 @@
 import UIKit
 
 protocol VoiceDataViewControllerDelegate: class {
-    func dismissVoiceDataViewController()
     func submit(voiceData: VoiceData)
 }
 
@@ -18,12 +17,7 @@ final class VoiceDataViewController: UIViewController {
     weak var delegate: VoiceDataViewControllerDelegate?
     
     private let containerStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.distribution = .fill
-        stackView.alignment = .fill
-        stackView.axis = .vertical
-        stackView.spacing = 20
-        return stackView
+        return UIStackView.verticalContainer
     }()
     
     private let voiceTypeSegmentedControl: UISegmentedControl = {
@@ -48,22 +42,20 @@ final class VoiceDataViewController: UIViewController {
         return textField
     }()
     
-    private lazy var dismissButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "Voltar", style: .done, target: self, action: #selector(dismissVoiceDataViewController))
-        return button
-    }()
-    
     private lazy var continueButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: "Continuar", style: .done, target: self, action: #selector(submit))
         return button
     }()
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupSubviews()
-        
-        view.backgroundColor = UIColor.white
+        setupAppearance()
     }
     
     private func setupSubviews() {
@@ -78,12 +70,11 @@ final class VoiceDataViewController: UIViewController {
         containerStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         containerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 16).isActive = true
         
-        navigationItem.leftBarButtonItem = dismissButton
         navigationItem.rightBarButtonItem = continueButton
     }
     
-    @objc private func dismissVoiceDataViewController() {
-        delegate?.dismissVoiceDataViewController()
+    private func setupAppearance() {
+        view.backgroundColor = Resources.Colors.tint.color
     }
     
     @objc private func submit() {

@@ -19,12 +19,7 @@ final class PersonalDataViewController: UIViewController {
     weak var delegate: PersonalDataViewControllerDelegate?
     
     private let containerStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.distribution = .fillProportionally
-        stackView.alignment = .fill
-        stackView.axis = .vertical
-        stackView.spacing = 20
-        return stackView
+        return UIStackView.verticalContainer
     }()
     
     private let nameTextField: UITextField = {
@@ -90,12 +85,15 @@ final class PersonalDataViewController: UIViewController {
         return button
     }()
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupSubviews()
-        
-        view.backgroundColor = UIColor.white
+        setupAppearance()
     }
     
     private func setupSubviews() {
@@ -123,6 +121,10 @@ final class PersonalDataViewController: UIViewController {
         
         navigationItem.leftBarButtonItem = dismissButton
         navigationItem.rightBarButtonItem = continueButton
+    }
+    
+    private func setupAppearance() {
+        view.backgroundColor = Resources.Colors.tint.color
     }
     
     private func horizontalStackView() -> UIStackView {

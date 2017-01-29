@@ -40,6 +40,10 @@ final class RecordAudioViewController: UIViewController {
     fileprivate let audioRecorder: AudioRecorder
     fileprivate let playbackController: PlaybackController
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError()
     }
@@ -56,9 +60,8 @@ final class RecordAudioViewController: UIViewController {
         super.viewDidLoad()
         
         setupSubviews()
+        setupAppearance()
         setupPlaybackController()
-        
-        view.backgroundColor = UIColor.white
     }
     
     private func setupSubviews() {
@@ -73,6 +76,10 @@ final class RecordAudioViewController: UIViewController {
         
         playButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         playButton.topAnchor.constraint(equalTo: recordButton.bottomAnchor, constant: 20).isActive = true
+    }
+    
+    private func setupAppearance() {
+        view.backgroundColor = Resources.Colors.tint.color
     }
     
     private func setupPlaybackController() {

@@ -8,19 +8,9 @@
 
 import UIKit
 
-protocol FormCoordinatorDelegate: class {
-    func submit(personalData: PersonalData, voiceData: VoiceData, contactData: ContactData)
-}
-
 final class FormCoordinator {
     
-    var viewController: UIViewController {
-        return personalDataViewController
-    }
-    
-    weak var delegate: FormCoordinatorDelegate?
-    
-    fileprivate weak var navigationController: UINavigationController?
+    fileprivate var navigationController: UINavigationController?
     fileprivate let personalDataViewController: PersonalDataViewController
     fileprivate var voiceDataViewController: VoiceDataViewController?
     fileprivate var contactDataViewController: ContactDataViewController?
@@ -29,9 +19,12 @@ final class FormCoordinator {
     fileprivate var voiceData: VoiceData?
     fileprivate var contactData: ContactData?
     
+    fileprivate var recordAudioCoordinator: RecordAudioCoordinator?
+    
     init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
         self.personalDataViewController = PersonalDataViewController()
+        self.navigationController = navigationController
+        self.navigationController?.pushViewController(personalDataViewController, animated: false)
         self.personalDataViewController.delegate = self
     }
 }
@@ -45,34 +38,30 @@ extension FormCoordinator: PersonalDataViewControllerDelegate {
         self.personalData = personalData
         self.voiceDataViewController = VoiceDataViewController()
         self.voiceDataViewController?.delegate = self
-        self.navigationController?.show(voiceDataViewController!, sender: nil)
+        self.navigationController?.pushViewController(voiceDataViewController!, animated: true)
     }
 }
 
 extension FormCoordinator: VoiceDataViewControllerDelegate {
-    func dismissVoiceDataViewController() {
-        _ = self.navigationController?.popViewController(animated: true)
-    }
-    
     func submit(voiceData: VoiceData) {
         self.voiceData = voiceData
         self.contactDataViewController = ContactDataViewController()
         self.contactDataViewController?.delegate = self
-        self.navigationController?.show(contactDataViewController!, sender: nil)
+        self.navigationController?.pushViewController(contactDataViewController!, animated: true)
     }
 }
 
 extension FormCoordinator: ContactDataViewControllerDelegate {
-    func dismissContactDataViewController() {
-        _ = self.navigationController?.popViewController(animated: true)
-    }
-    
     func submit(contactData: ContactData) {
         self.contactData = contactData
         
         guard let personalData = personalData,
             let voiceData = voiceData else { return }
         
-        delegate?.submit(personalData: personalData, voiceData: voiceData, contactData: contactData)
+        self.recordAudioCoordinator = RecordAudioCoordinator()
+
+        guard let recordAudioViewController = recordAudioCoordinator?.viewController else { return }
+        
+        self.navigationController?.show(recordAudioViewController, sender: nil)
     }
 }
