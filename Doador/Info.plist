@@ -39,5 +39,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Precisamos de acesso ao microfone do seu aparelho para poder gravar sua doação de voz. :)</string>
 </dict>
 </plist>

@@ -8,11 +8,17 @@
 
 import UIKit
 
+protocol FormCoordinatorDelegate: class {
+    func submit(personalData: PersonalData, voiceData: VoiceData, contactData: ContactData)
+}
+
 final class FormCoordinator {
     
     var viewController: UIViewController {
         return personalDataViewController
     }
+    
+    weak var delegate: FormCoordinatorDelegate?
     
     fileprivate weak var navigationController: UINavigationController?
     fileprivate let personalDataViewController: PersonalDataViewController
@@ -63,5 +69,10 @@ extension FormCoordinator: ContactDataViewControllerDelegate {
     
     func submit(contactData: ContactData) {
         self.contactData = contactData
+        
+        guard let personalData = personalData,
+            let voiceData = voiceData else { return }
+        
+        delegate?.submit(personalData: personalData, voiceData: voiceData, contactData: contactData)
     }
 }

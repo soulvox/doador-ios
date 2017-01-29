@@ -1,5 +1,5 @@
 PODS:
-  - Keith (0.2.4)
+  - Keith (0.2.5)
   - SAMTextView (0.2.2)
 
 DEPENDENCIES:
@@ -7,7 +7,7 @@ DEPENDENCIES:
   - SAMTextView
 
 SPEC CHECKSUMS:
-  Keith: 0677e4ec87277b348ecbb01564ec9095532d9cc0
+  Keith: 753c4b532a3f8b174fbca287f9cd4d66e4cc6b06
   SAMTextView: 979c43bb1fa5859ddfbfeb35e9c296a2b0ec55fd
 
 PODFILE CHECKSUM: c845bd5b35a8a2a1a0273f8765c0c9d1a5c26b4d

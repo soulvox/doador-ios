@@ -25,6 +25,7 @@ final class AudioRecorder: NSObject, AVAudioRecorderDelegate {
         do {
             try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
             try audioSession.setActive(true)
+            try audioSession.overrideOutputAudioPort(.speaker)
             
             audioSession.requestRecordPermission { [weak self] allowed in
                 DispatchQueue.main.async {
@@ -40,7 +41,6 @@ final class AudioRecorder: NSObject, AVAudioRecorderDelegate {
             }
         }
         catch {
-            print("Record permission not given")
             delegate?.onStartRecording(success: false)
         }
     }
@@ -53,7 +53,7 @@ final class AudioRecorder: NSObject, AVAudioRecorderDelegate {
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
             AVSampleRateKey: 12000,
             AVNumberOfChannelsKey: 1,
-            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+            AVEncoderAudioQualityKey: AVAudioQuality.max.rawValue
         ]
         
         do {
@@ -64,20 +64,17 @@ final class AudioRecorder: NSObject, AVAudioRecorderDelegate {
             delegate?.onStartRecording(success: true)
         }
         catch {
-            finishRecording(success: false)
+            finishRecording()
             delegate?.onStartRecording(success: false)
         }
     }
     
-    func finishRecording(success: Bool, url: URL? = nil) {
+    func finishRecording() {
         audioRecorder?.stop()
-        delegate?.onFinishRecording(success: success, url: url)
     }
     
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
-        if !flag {
-            finishRecording(success: false, url: recorder.url)
-        }
+        delegate?.onFinishRecording(success: flag, url: recorder.url)
     }
     
     private func documentsDirectory() -> URL {

@@ -15,23 +15,19 @@ final class RecordAudioViewController: UIViewController {
         case recording, stopped
     }
     
-    enum PlayState {
-        case playing, paused, stopped
-    }
-    
-    private let recordButton: UIButton = {
+    fileprivate let recordButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Gravar", for: .normal)
         button.setTitle("Parar", for: .selected)
-        button.addTarget(self, action: #selector(RecordAudioViewController.toggleRecordStop), for: .touchUpInside)
+        button.addTarget(self, action: #selector(toggleRecordStop), for: .touchUpInside)
         return button
     }()
     
-    private let playButton: UIButton = {
+    fileprivate let playButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Tocar", for: .normal)
         button.setTitle("Pausar", for: .selected)
-        button.addTarget(self, action: #selector(RecordAudioViewController.toggleRecordStop), for: .touchUpInside)
+        button.addTarget(self, action: #selector(togglePlayPause), for: .touchUpInside)
         return button
     }()
     
@@ -41,13 +37,7 @@ final class RecordAudioViewController: UIViewController {
         }
     }
     
-    fileprivate var playState: PlayState = .paused {
-        didSet {
-            playStateDidChange()
-        }
-    }
-    
-    private let audioRecorder: AudioRecorder
+    fileprivate let audioRecorder: AudioRecorder
     fileprivate let playbackController: PlaybackController
     
     required init?(coder aDecoder: NSCoder) {
@@ -58,12 +48,15 @@ final class RecordAudioViewController: UIViewController {
         self.audioRecorder = audioRecorder
         self.playbackController = playbackController
         super.init(nibName: nil, bundle: nil)
+        
+        self.audioRecorder.delegate = self
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupSubviews()
+        setupPlaybackController()
         
         view.backgroundColor = UIColor.white
     }
@@ -82,55 +75,73 @@ final class RecordAudioViewController: UIViewController {
         playButton.topAnchor.constraint(equalTo: recordButton.bottomAnchor, constant: 20).isActive = true
     }
     
+    private func setupPlaybackController() {
+        let center = NotificationCenter.default
+        
+        center.addObserver(
+            forName: PlaybackControllerNotification.didUpdateStatus.name,
+            object: playbackController,
+            queue: .main) { [weak self] _ in
+                
+                guard let this = self else { return }
+                
+                switch this.playbackController.status {
+                case .idle, .preparing(_, _), .paused(_), .buffering:
+                    this.playButton.isSelected = false
+                    this.playButton.isEnabled = true
+                    this.recordButton.isEnabled = true
+                    
+                case .playing(_):
+                    this.playButton.isSelected = true
+                    this.playButton.isEnabled = true
+                    this.recordButton.isEnabled = false
+                    
+                case .error(let error):
+                    print("Error during playback: \(error)")
+                    this.playButton.isSelected = false
+                    this.playButton.isEnabled = false
+                    this.recordButton.isEnabled = true
+                }
+        }
+    }
+    
     @objc private func toggleRecordStop() {
+        switch playbackController.status {
+        case .playing(_), .buffering:
+            playbackController.pause(manually: true)
+            
+        default:
+            break
+        }
+        
         switch recordState {
         case .recording:
-            recordState = .stopped
+            audioRecorder.finishRecording()
             
         case .stopped:
-            recordState = .recording
+            audioRecorder.startRecording()
         }
     }
     
     @objc private func togglePlayPause() {
-        switch playState {
-        case .playing:
-            playState = .paused
+        switch recordState {
+        case .recording:
+            audioRecorder.finishRecording()
             
         case .stopped:
-            playState = .playing
-            
-        case .paused:
-            playState = .playing
+            break
         }
+        
+        playbackController.togglePlayPause()
     }
     
     private func recordStateDidChange() {
         switch recordState {
         case .recording:
-            playState = .stopped
             recordButton.isSelected = true
-            audioRecorder.startRecording()
             
         case .stopped:
             recordButton.isSelected = false
-            audioRecorder.finishRecording(success: true)
-        }
-    }
-    
-    private func playStateDidChange() {
-        switch playState {
-        case .playing:
-            playButton.isSelected = true
-            playbackController.play()
-            
-        case .stopped:
-            playButton.isSelected = false
-            playbackController.stop()
-            
-        case .paused:
-            playButton.isSelected = false
-            playbackController.pause(manually: true)
         }
     }
 }
@@ -138,28 +149,25 @@ final class RecordAudioViewController: UIViewController {
 extension RecordAudioViewController: AudioRecorderDelegate {
     func onStartRecording(success: Bool) {
         if success {
-            switch recordState {
-            case .recording:
-                recordState = .stopped
-                
-            case .stopped:
-                recordState = .recording
-                
-            }
-            
+            recordState = .recording
+            playButton.isEnabled = false
+        
         } else {
             recordState = .stopped
+            playButton.isEnabled = true
         }
     }
     
     func onFinishRecording(success: Bool, url: URL?) {
+        recordState = .stopped
+        playButton.isEnabled = true
+
         if success {
             guard let url = url else { return }
             
             let nowPlayingInfo = PlaybackSource.NowPlayingInfo(title: "", albumTitle: "", artist: "", artworkUrl: nil)
             let playbackSource = PlaybackSource(url: url, type: .audio(nowPlayingInfo: nowPlayingInfo))
             playbackController.prepareToPlay(playbackSource)
-            
         }
     }
 }

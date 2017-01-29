@@ -14,6 +14,7 @@ final class AppCoordinator {
     
     fileprivate var navigationController: UINavigationController?
     fileprivate var formCoordinator: FormCoordinator?
+    fileprivate var recordAudioCoordinator: RecordAudioCoordinator?
     
     init() {
         let donatorTypeViewController = DonatorTypeViewController()
@@ -29,9 +30,21 @@ extension AppCoordinator: DonatorTypeViewControllerDelegate {
         guard let navigationController = navigationController else { return }
         
         self.formCoordinator = FormCoordinator(navigationController: navigationController)
+        self.formCoordinator?.delegate = self
+        
         let formViewController = formCoordinator?.viewController
         
         navigationController.show(formViewController!, sender: nil)
         self.rootViewController.show(navigationController, sender: nil)
+    }
+}
+
+extension AppCoordinator: FormCoordinatorDelegate {
+    func submit(personalData: PersonalData, voiceData: VoiceData, contactData: ContactData) {
+        self.recordAudioCoordinator = RecordAudioCoordinator()
+        
+        guard let recordAudioViewController = recordAudioCoordinator?.viewController else { return }
+        
+        self.navigationController?.show(recordAudioViewController, sender: nil)
     }
 }
