@@ -56,6 +56,7 @@ final class VoiceDataViewController: UIViewController, BackgroundColorable {
         
         setupSubviews()
         setBackgroundTintColor()
+        setBackButtonTitle()
     }
     
     private func setupSubviews() {

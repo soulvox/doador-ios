@@ -26,6 +26,6 @@ final class AcknowledgmentCoordinator {
 
 extension AcknowledgmentCoordinator: AcknowledgmentViewControllerDelegate {
     func startOver() {
-        _ = self.navigationController?.popToRootViewController(animated: true)
+        _ = self.acknowledgmentViewController.dismiss(animated: true, completion: nil)
     }
 }

@@ -38,6 +38,7 @@ final class AcknowledgmentViewController: UIViewController, BackgroundColorable 
         
         setupSubviews()
         setBackgroundTintColor()
+        unsetBackButton()
     }
     
     private func setupSubviews() {

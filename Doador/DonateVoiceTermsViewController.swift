@@ -50,6 +50,7 @@ final class DonateVoiceTermsViewController: UIViewController, BackgroundColorabl
         
         setupSubviews()
         setBackgroundTintColor()
+        setBackButtonTitle()
     }
     
     private func setupSubviews() {

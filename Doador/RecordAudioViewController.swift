@@ -104,6 +104,7 @@ final class RecordAudioViewController: UIViewController, BackgroundColorable {
         setupSubviews()
         setBackgroundTintColor()
         setupPlaybackController()
+        setBackButtonTitle()
     }
     
     private func setupSubviews() {

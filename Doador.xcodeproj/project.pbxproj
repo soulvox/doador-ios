@@ -34,6 +34,7 @@
 		08F23BE21E3E10A100D23224 /* AcknowledgmentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23BE11E3E10A100D23224 /* AcknowledgmentCoordinator.swift */; };
 		08F23BE51E3E124000D23224 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23BE41E3E124000D23224 /* UIView.swift */; };
 		08F23BE81E3E151800D23224 /* BackgroundColorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23BE71E3E151800D23224 /* BackgroundColorable.swift */; };
+		08F23BEA1E3E1AC700D23224 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23BE91E3E1AC700D23224 /* UIViewController.swift */; };
 		59A02430778AD6475E3634D4 /* Pods_Doador.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F491D6AFA7D63C845EE0711D /* Pods_Doador.framework */; };
 		B13418A78DC0B4B0670927A9 /* Pods_DoadorUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF03FF6C3B56E958C84F5C2 /* Pods_DoadorUITests.framework */; };
 		DEC88FBFEEE8C14F6E329215 /* Pods_DoadorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B79A2FD47F722921D798981A /* Pods_DoadorTests.framework */; };
@@ -91,6 +92,7 @@
 		08F23BE11E3E10A100D23224 /* AcknowledgmentCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcknowledgmentCoordinator.swift; sourceTree = "<group>"; };
 		08F23BE41E3E124000D23224 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		08F23BE71E3E151800D23224 /* BackgroundColorable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundColorable.swift; sourceTree = "<group>"; };
+		08F23BE91E3E1AC700D23224 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		2203B9F7EEB42E88BCA65CD7 /* Pods-DoadorUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoadorUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DoadorUITests/Pods-DoadorUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		2782B315112193122D9DAFFA /* Pods-Doador.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Doador.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Doador/Pods-Doador.debug.xcconfig"; sourceTree = "<group>"; };
 		391D5C185CE2F324EF5140DA /* Pods-DoadorUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoadorUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DoadorUITests/Pods-DoadorUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				08F23BDD1E3E03FB00D23224 /* UILabel.swift */,
 				08F23BCB1E3D925F00D23224 /* UIStackView.swift */,
 				08F23BE41E3E124000D23224 /* UIView.swift */,
+				08F23BE91E3E1AC700D23224 /* UIViewController.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -600,6 +603,7 @@
 				08F23BD21E3D9EE900D23224 /* DonateVoiceTermsViewController.swift in Sources */,
 				08F23BC01E3D4DE000D23224 /* VoiceData.swift in Sources */,
 				08F23BCA1E3D914000D23224 /* MainViewController.swift in Sources */,
+				08F23BEA1E3E1AC700D23224 /* UIViewController.swift in Sources */,
 				08F23BBA1E3D4C4600D23224 /* PersonalDataViewController.swift in Sources */,
 				08F23BCC1E3D925F00D23224 /* UIStackView.swift in Sources */,
 				08F23BB61E3D484800D23224 /* PersonalData.swift in Sources */,

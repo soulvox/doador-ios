@@ -89,6 +89,7 @@ final class PersonalDataViewController: UIViewController, BackgroundColorable {
         
         setupSubviews()
         setBackgroundTintColor()
+        setBackButtonTitle()
     }
     
     private func setupSubviews() {
