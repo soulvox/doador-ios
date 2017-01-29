@@ -12,7 +12,7 @@ protocol VoiceDataViewControllerDelegate: class {
     func submit(voiceData: VoiceData)
 }
 
-final class VoiceDataViewController: UIViewController {
+final class VoiceDataViewController: UIViewController, BackgroundColorable {
     
     weak var delegate: VoiceDataViewControllerDelegate?
     
@@ -55,26 +55,15 @@ final class VoiceDataViewController: UIViewController {
         super.viewDidLoad()
         
         setupSubviews()
-        setupAppearance()
+        setBackgroundTintColor()
     }
     
     private func setupSubviews() {
         containerStackView.addArrangedSubview(voiceTypeSegmentedControl)
         containerStackView.addArrangedSubview(accentTextField)
-        
-        view.addSubview(containerStackView)
-        
-        containerStackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        containerStackView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 20).isActive = true
-        containerStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
-        containerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 16).isActive = true
+        containerStackView.pinToTopEdges(of: self)
         
         navigationItem.rightBarButtonItem = continueButton
-    }
-    
-    private func setupAppearance() {
-        view.backgroundColor = Resources.Colors.tint.color
     }
     
     @objc private func submit() {

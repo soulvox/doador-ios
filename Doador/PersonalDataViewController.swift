@@ -14,7 +14,7 @@ protocol PersonalDataViewControllerDelegate: class {
     func submit(personalData: PersonalData)
 }
 
-final class PersonalDataViewController: UIViewController {
+final class PersonalDataViewController: UIViewController, BackgroundColorable {
     
     weak var delegate: PersonalDataViewControllerDelegate?
     
@@ -88,7 +88,7 @@ final class PersonalDataViewController: UIViewController {
         super.viewDidLoad()
         
         setupSubviews()
-        setupAppearance()
+        setBackgroundTintColor()
     }
     
     private func setupSubviews() {
@@ -105,20 +105,9 @@ final class PersonalDataViewController: UIViewController {
         containerStackView.addArrangedSubview(ageGenderStackView)
         containerStackView.addArrangedSubview(weightHeightStackView)
         containerStackView.addArrangedSubview(personalityDescriptionTextView)
-        
-        view.addSubview(containerStackView)
-        
-        containerStackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        containerStackView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 20).isActive = true
-        containerStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
-        containerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
+        containerStackView.pinToTopEdges(of: self)
         
         navigationItem.rightBarButtonItem = continueButton
-    }
-    
-    private func setupAppearance() {
-        view.backgroundColor = Resources.Colors.tint.color
     }
     
     private func horizontalStackView() -> UIStackView {

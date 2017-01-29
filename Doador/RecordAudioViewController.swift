@@ -9,25 +9,59 @@
 import UIKit
 import Keith
 
-final class RecordAudioViewController: UIViewController {
+protocol RecordAudioViewControllerDelegate: class {
+    func submit(recordAudioViewController: RecordAudioViewController, recordedAudioUrl: URL)
+}
+
+final class RecordAudioViewController: UIViewController, BackgroundColorable {
     
     enum RecordState {
         case recording, stopped
     }
     
+    weak var delegate: RecordAudioViewControllerDelegate?
+    
+    private let containerStackView: UIStackView = {
+        return UIStackView.verticalContainer
+    }()
+    
+    private let descriptionLabel: UILabel = {
+        let label = UILabel.descriptiveLabel
+        return label
+    }()
+    
+    private let textToRecordLabel: UILabel = {
+        let label = UILabel.descriptiveLabel
+        label.font = UIFont.boldSystemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize)
+        return label
+    }()
+    
+    private let buttonsStackView: UIStackView = {
+        let stackView = UIStackView.horizontalContainer
+        stackView.distribution = .fillEqually
+        return stackView
+    }()
+    
+    fileprivate let playButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(Resources.Images.play.image, for: .normal)
+        button.setImage(Resources.Images.pause.image, for: .selected)
+        button.addTarget(self, action: #selector(togglePlayPause), for: .touchUpInside)
+        button.isEnabled = false
+        return button
+    }()
+    
     fileprivate let recordButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Gravar", for: .normal)
-        button.setTitle("Parar", for: .selected)
+        let button = UIButton(type: .custom)
+        let image = Resources.Images.microphone.image
+        button.setImage(Resources.Images.microphoneFilled.image, for: .normal)
         button.addTarget(self, action: #selector(toggleRecordStop), for: .touchUpInside)
         return button
     }()
     
-    fileprivate let playButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Tocar", for: .normal)
-        button.setTitle("Pausar", for: .selected)
-        button.addTarget(self, action: #selector(togglePlayPause), for: .touchUpInside)
+    private lazy var continueButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "Continuar", style: .done, target: self, action: #selector(submit))
+        button.isEnabled = false
         return button
     }()
     
@@ -39,6 +73,11 @@ final class RecordAudioViewController: UIViewController {
     
     fileprivate let audioRecorder: AudioRecorder
     fileprivate let playbackController: PlaybackController
+    fileprivate var recordedAudioUrl: URL? {
+        didSet {
+            continueButton.isEnabled = recordedAudioUrl != nil
+        }
+    }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -48,9 +87,12 @@ final class RecordAudioViewController: UIViewController {
         fatalError()
     }
     
-    init(audioRecorder: AudioRecorder, playbackController: PlaybackController) {
+    init(audioRecorder: AudioRecorder, playbackController: PlaybackController, descriptionLabelText: String, textToRecordLabelText: String) {
         self.audioRecorder = audioRecorder
         self.playbackController = playbackController
+        self.descriptionLabel.text = descriptionLabelText
+        self.textToRecordLabel.text = textToRecordLabelText
+        
         super.init(nibName: nil, bundle: nil)
         
         self.audioRecorder.delegate = self
@@ -60,26 +102,19 @@ final class RecordAudioViewController: UIViewController {
         super.viewDidLoad()
         
         setupSubviews()
-        setupAppearance()
+        setBackgroundTintColor()
         setupPlaybackController()
     }
     
     private func setupSubviews() {
-        view.addSubview(recordButton)
-        view.addSubview(playButton)
+        buttonsStackView.addArrangedSubview(playButton)
+        buttonsStackView.addArrangedSubview(recordButton)
+        containerStackView.addArrangedSubview(descriptionLabel)
+        containerStackView.addArrangedSubview(textToRecordLabel)
+        containerStackView.addArrangedSubview(buttonsStackView)
+        containerStackView.pinToEdges(of: self)
         
-        recordButton.translatesAutoresizingMaskIntoConstraints = false
-        playButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        recordButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        recordButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        
-        playButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        playButton.topAnchor.constraint(equalTo: recordButton.bottomAnchor, constant: 20).isActive = true
-    }
-    
-    private func setupAppearance() {
-        view.backgroundColor = Resources.Colors.tint.color
+        navigationItem.rightBarButtonItem = continueButton
     }
     
     private func setupPlaybackController() {
@@ -142,6 +177,11 @@ final class RecordAudioViewController: UIViewController {
         playbackController.togglePlayPause()
     }
     
+    @objc private func submit() {
+        guard let url = recordedAudioUrl else { return }
+        delegate?.submit(recordAudioViewController: self, recordedAudioUrl: url)
+    }
+    
     private func recordStateDidChange() {
         switch recordState {
         case .recording:
@@ -158,6 +198,8 @@ extension RecordAudioViewController: AudioRecorderDelegate {
         if success {
             recordState = .recording
             playButton.isEnabled = false
+            
+            UIView.animate(withDuration: 0.7, delay: 0, options: [.curveEaseInOut, .repeat, .autoreverse, .allowUserInteraction], animations: { self.recordButton.alpha = 0.3 }, completion: nil)
         
         } else {
             recordState = .stopped
@@ -168,9 +210,13 @@ extension RecordAudioViewController: AudioRecorderDelegate {
     func onFinishRecording(success: Bool, url: URL?) {
         recordState = .stopped
         playButton.isEnabled = true
+        
+        UIView.animate(withDuration: 0.7, delay: 0, options: [.curveEaseInOut, .beginFromCurrentState], animations: { self.recordButton.alpha = 1.0 }, completion: nil)
 
         if success {
             guard let url = url else { return }
+            
+            self.recordedAudioUrl = url
             
             let nowPlayingInfo = PlaybackSource.NowPlayingInfo(title: "", albumTitle: "", artist: "", artworkUrl: nil)
             let playbackSource = PlaybackSource(url: url, type: .audio(nowPlayingInfo: nowPlayingInfo))

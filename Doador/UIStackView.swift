@@ -9,6 +9,15 @@
 import UIKit
 
 extension UIStackView {
+    static var horizontalContainer: UIStackView {
+        let stackView = UIStackView()
+        stackView.distribution = .fillProportionally
+        stackView.alignment = .fill
+        stackView.axis = .horizontal
+        stackView.spacing = 20
+        return stackView
+    }
+    
     static var verticalContainer: UIStackView {
         let stackView = UIStackView()
         stackView.distribution = .fillProportionally

@@ -29,7 +29,10 @@ extension DonateVoiceCoordinator: DonateVoiceTermsViewControllerDelegate {
     }
     
     func acceptTerms() {
-        self.formCoordinator = FormCoordinator(navigationController: navigationController)
+        if self.formCoordinator == nil {
+            self.formCoordinator = FormCoordinator(navigationController: navigationController)
+        }
+        
         self.formCoordinator?.showViewController()
     }
 }

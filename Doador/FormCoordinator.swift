@@ -39,8 +39,12 @@ extension FormCoordinator: PersonalDataViewControllerDelegate {
     
     func submit(personalData: PersonalData) {
         self.personalData = personalData
-        self.voiceDataViewController = VoiceDataViewController()
-        self.voiceDataViewController?.delegate = self
+        
+        if self.voiceDataViewController == nil {
+            self.voiceDataViewController = VoiceDataViewController()
+            self.voiceDataViewController?.delegate = self
+        }
+        
         self.navigationController?.pushViewController(voiceDataViewController!, animated: true)
     }
 }
@@ -48,8 +52,12 @@ extension FormCoordinator: PersonalDataViewControllerDelegate {
 extension FormCoordinator: VoiceDataViewControllerDelegate {
     func submit(voiceData: VoiceData) {
         self.voiceData = voiceData
-        self.contactDataViewController = ContactDataViewController()
-        self.contactDataViewController?.delegate = self
+        
+        if self.contactDataViewController == nil {
+            self.contactDataViewController = ContactDataViewController()
+            self.contactDataViewController?.delegate = self
+        }
+        
         self.navigationController?.pushViewController(contactDataViewController!, animated: true)
     }
 }

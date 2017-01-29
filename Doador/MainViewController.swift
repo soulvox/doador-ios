@@ -13,7 +13,7 @@ protocol MainViewControllerDelegate: class {
     func findDonator()
 }
 
-final class MainViewController: UIViewController {
+final class MainViewController: UIViewController, BackgroundColorable {
     
     weak var delegate: MainViewControllerDelegate?
     
@@ -26,12 +26,8 @@ final class MainViewController: UIViewController {
     }()
     
     private let descriptionLabel: UILabel = {
-        let label = UILabel()
+        let label = UILabel.descriptiveLabel
         label.text = Resources.Text.soulvoxIntro.rawValue
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        label.font = UIFont.preferredFont(forTextStyle: .body)
-        label.textColor = Resources.Colors.white.color
         return label
     }()
     
@@ -63,7 +59,7 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         
         setupSubviews()
-        setupAppearance()
+        setBackgroundTintColor()
     }
     
     private func setupSubviews() {
@@ -72,19 +68,7 @@ final class MainViewController: UIViewController {
         buttonsStackView.addArrangedSubview(donateVoiceButton)
         buttonsStackView.addArrangedSubview(findDonatorButton)
         containerStackView.addArrangedSubview(buttonsStackView)
-        
-        view.addSubview(containerStackView)
-        
-        containerStackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        containerStackView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 20).isActive = true
-        containerStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
-        containerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
-        containerStackView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor, constant: -10).isActive = true
-    }
-    
-    private func setupAppearance() {
-        view.backgroundColor = Resources.Colors.tint.color
+        containerStackView.pinToEdges(of: self)
     }
     
     @objc private func donateVoice() {
