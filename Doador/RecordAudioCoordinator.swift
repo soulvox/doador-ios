@@ -11,17 +11,19 @@ import Keith
 
 final class RecordAudioCoordinator {
     
-    var viewController: UIViewController {
-        return recordAudioViewController
-    }
-    
-    fileprivate let recordAudioViewController: RecordAudioViewController
+    fileprivate weak var navigationController: UINavigationController?
     fileprivate let audioRecorder: AudioRecorder
     fileprivate let playbackController: PlaybackController
+    fileprivate let recordAudioViewController: RecordAudioViewController
     
-    init() {
+    init(navigationController: UINavigationController?) {
+        self.navigationController = navigationController
         self.audioRecorder = AudioRecorder()
         self.playbackController = PlaybackController()
         self.recordAudioViewController = RecordAudioViewController(audioRecorder: audioRecorder, playbackController: playbackController)
+    }
+    
+    func showViewController() {
+        self.navigationController?.show(recordAudioViewController, sender: nil)
     }
 }

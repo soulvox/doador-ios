@@ -10,7 +10,7 @@ import UIKit
 
 final class FormCoordinator {
     
-    fileprivate var navigationController: UINavigationController?
+    fileprivate weak var navigationController: UINavigationController?
     fileprivate let personalDataViewController: PersonalDataViewController
     fileprivate var voiceDataViewController: VoiceDataViewController?
     fileprivate var contactDataViewController: ContactDataViewController?
@@ -21,17 +21,20 @@ final class FormCoordinator {
     
     fileprivate var recordAudioCoordinator: RecordAudioCoordinator?
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController?) {
         self.personalDataViewController = PersonalDataViewController()
         self.navigationController = navigationController
-        self.navigationController?.pushViewController(personalDataViewController, animated: false)
         self.personalDataViewController.delegate = self
+    }
+    
+    func showViewController() {
+        self.navigationController?.pushViewController(personalDataViewController, animated: true)
     }
 }
 
 extension FormCoordinator: PersonalDataViewControllerDelegate {
     func dismissPersonalDataViewController() {
-        self.personalDataViewController.dismiss(animated: true, completion: nil)
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
     func submit(personalData: PersonalData) {
@@ -58,10 +61,7 @@ extension FormCoordinator: ContactDataViewControllerDelegate {
         guard let personalData = personalData,
             let voiceData = voiceData else { return }
         
-        self.recordAudioCoordinator = RecordAudioCoordinator()
-
-        guard let recordAudioViewController = recordAudioCoordinator?.viewController else { return }
-        
-        self.navigationController?.show(recordAudioViewController, sender: nil)
+        self.recordAudioCoordinator = RecordAudioCoordinator(navigationController: navigationController)
+        self.recordAudioCoordinator?.showViewController()
     }
 }

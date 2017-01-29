@@ -26,6 +26,9 @@
 		08F23BC71E3D795A00D23224 /* RecordAudioCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23BC61E3D795A00D23224 /* RecordAudioCoordinator.swift */; };
 		08F23BCA1E3D914000D23224 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23BC91E3D914000D23224 /* MainViewController.swift */; };
 		08F23BCC1E3D925F00D23224 /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23BCB1E3D925F00D23224 /* UIStackView.swift */; };
+		08F23BD01E3D9EA500D23224 /* DonateVoiceCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23BCF1E3D9EA500D23224 /* DonateVoiceCoordinator.swift */; };
+		08F23BD21E3D9EE900D23224 /* DonateVoiceTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23BD11E3D9EE900D23224 /* DonateVoiceTermsViewController.swift */; };
+		08F23BD91E3DA5A100D23224 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23BD81E3DA5A100D23224 /* UIButton.swift */; };
 		59A02430778AD6475E3634D4 /* Pods_Doador.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F491D6AFA7D63C845EE0711D /* Pods_Doador.framework */; };
 		B13418A78DC0B4B0670927A9 /* Pods_DoadorUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF03FF6C3B56E958C84F5C2 /* Pods_DoadorUITests.framework */; };
 		DEC88FBFEEE8C14F6E329215 /* Pods_DoadorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B79A2FD47F722921D798981A /* Pods_DoadorTests.framework */; };
@@ -75,6 +78,9 @@
 		08F23BC61E3D795A00D23224 /* RecordAudioCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordAudioCoordinator.swift; sourceTree = "<group>"; };
 		08F23BC91E3D914000D23224 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		08F23BCB1E3D925F00D23224 /* UIStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
+		08F23BCF1E3D9EA500D23224 /* DonateVoiceCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonateVoiceCoordinator.swift; sourceTree = "<group>"; };
+		08F23BD11E3D9EE900D23224 /* DonateVoiceTermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonateVoiceTermsViewController.swift; sourceTree = "<group>"; };
+		08F23BD81E3DA5A100D23224 /* UIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		2203B9F7EEB42E88BCA65CD7 /* Pods-DoadorUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoadorUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DoadorUITests/Pods-DoadorUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		2782B315112193122D9DAFFA /* Pods-Doador.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Doador.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Doador/Pods-Doador.debug.xcconfig"; sourceTree = "<group>"; };
 		391D5C185CE2F324EF5140DA /* Pods-DoadorUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoadorUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DoadorUITests/Pods-DoadorUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -138,15 +144,10 @@
 		0819F5DA1E3AA260006D6CBD /* Doador */ = {
 			isa = PBXGroup;
 			children = (
-				08F23BBB1E3D4D7700D23224 /* Application */,
-				08F23BBC1E3D4D9C00D23224 /* Form */,
-				08F23BC81E3D7C1E00D23224 /* RecordAudio */,
+				08F23BDA1E3DA61300D23224 /* Extensions */,
 				08F23BC51E3D50A700D23224 /* Models */,
-				08F23BA01E3AA8C700D23224 /* Resources.swift */,
-				08F23BCB1E3D925F00D23224 /* UIStackView.swift */,
-				0819F5E21E3AA260006D6CBD /* Assets.xcassets */,
-				0819F5E41E3AA260006D6CBD /* LaunchScreen.storyboard */,
-				0819F5E71E3AA260006D6CBD /* Info.plist */,
+				08F23BDB1E3DA62800D23224 /* Screens */,
+				08F23BDC1E3DA63700D23224 /* Resources */,
 			);
 			path = Doador;
 			sourceTree = "<group>";
@@ -208,6 +209,46 @@
 				08F23BA81E3ABEF900D23224 /* AudioRecorder.swift */,
 			);
 			name = RecordAudio;
+			sourceTree = "<group>";
+		};
+		08F23BD31E3D9F0000D23224 /* DonateVoice */ = {
+			isa = PBXGroup;
+			children = (
+				08F23BCF1E3D9EA500D23224 /* DonateVoiceCoordinator.swift */,
+				08F23BD11E3D9EE900D23224 /* DonateVoiceTermsViewController.swift */,
+			);
+			name = DonateVoice;
+			sourceTree = "<group>";
+		};
+		08F23BDA1E3DA61300D23224 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				08F23BD81E3DA5A100D23224 /* UIButton.swift */,
+				08F23BCB1E3D925F00D23224 /* UIStackView.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		08F23BDB1E3DA62800D23224 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				08F23BBB1E3D4D7700D23224 /* Application */,
+				08F23BD31E3D9F0000D23224 /* DonateVoice */,
+				08F23BBC1E3D4D9C00D23224 /* Form */,
+				08F23BC81E3D7C1E00D23224 /* RecordAudio */,
+			);
+			name = Screens;
+			sourceTree = "<group>";
+		};
+		08F23BDC1E3DA63700D23224 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				08F23BA01E3AA8C700D23224 /* Resources.swift */,
+				0819F5E21E3AA260006D6CBD /* Assets.xcassets */,
+				0819F5E41E3AA260006D6CBD /* LaunchScreen.storyboard */,
+				0819F5E71E3AA260006D6CBD /* Info.plist */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		0B60A47D4F9584BAA7C46CB3 /* Pods */ = {
@@ -519,13 +560,16 @@
 				08F23B9D1E3AA6FD00D23224 /* AppCoordinator.swift in Sources */,
 				08F23BA71E3ABBEA00D23224 /* RecordAudioViewController.swift in Sources */,
 				08F23BA91E3ABEF900D23224 /* AudioRecorder.swift in Sources */,
+				08F23BD91E3DA5A100D23224 /* UIButton.swift in Sources */,
 				08F23BC71E3D795A00D23224 /* RecordAudioCoordinator.swift in Sources */,
 				0819F5DC1E3AA260006D6CBD /* AppDelegate.swift in Sources */,
+				08F23BD21E3D9EE900D23224 /* DonateVoiceTermsViewController.swift in Sources */,
 				08F23BC01E3D4DE000D23224 /* VoiceData.swift in Sources */,
 				08F23BCA1E3D914000D23224 /* MainViewController.swift in Sources */,
 				08F23BBA1E3D4C4600D23224 /* PersonalDataViewController.swift in Sources */,
 				08F23BCC1E3D925F00D23224 /* UIStackView.swift in Sources */,
 				08F23BB61E3D484800D23224 /* PersonalData.swift in Sources */,
+				08F23BD01E3D9EA500D23224 /* DonateVoiceCoordinator.swift in Sources */,
 				08F23BB81E3D4B1300D23224 /* FormCoordinator.swift in Sources */,
 				08F23BBE1E3D4DB800D23224 /* VoiceDataViewController.swift in Sources */,
 				08F23BC41E3D509200D23224 /* ContactData.swift in Sources */,

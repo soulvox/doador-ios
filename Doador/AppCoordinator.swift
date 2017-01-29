@@ -14,8 +14,8 @@ final class AppCoordinator {
     let rootViewController: UIViewController
     let navigationController: UINavigationController
     
+    fileprivate var donateVoiceCoordinator: DonateVoiceCoordinator?
     fileprivate var formCoordinator: FormCoordinator?
-    fileprivate var recordAudioCoordinator: RecordAudioCoordinator?
     
     init() {
         let mainViewController = MainViewController()
@@ -27,7 +27,7 @@ final class AppCoordinator {
 
 extension AppCoordinator: MainViewControllerDelegate {
     func donateVoice() {
-        self.formCoordinator = FormCoordinator(navigationController: navigationController)
+        self.donateVoiceCoordinator = DonateVoiceCoordinator(navigationController: navigationController)
         self.rootViewController.show(navigationController, sender: nil)
     }
     

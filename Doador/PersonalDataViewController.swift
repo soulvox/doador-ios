@@ -75,11 +75,6 @@ final class PersonalDataViewController: UIViewController {
         return textView
     }()
     
-    private lazy var dismissButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "Cancelar", style: .done, target: self, action: #selector(dismissPersonalDataViewController))
-        return button
-    }()
-    
     private lazy var continueButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: "Continuar", style: .done, target: self, action: #selector(submit))
         return button
@@ -119,7 +114,6 @@ final class PersonalDataViewController: UIViewController {
         containerStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         containerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         
-        navigationItem.leftBarButtonItem = dismissButton
         navigationItem.rightBarButtonItem = continueButton
     }
     
