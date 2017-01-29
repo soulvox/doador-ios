@@ -113,7 +113,7 @@ final class RecordAudioViewController: UIViewController, BackgroundColorable {
         containerStackView.addArrangedSubview(descriptionLabel)
         containerStackView.addArrangedSubview(textToRecordLabel)
         containerStackView.addArrangedSubview(buttonsStackView)
-        containerStackView.pinToEdges(of: self)
+        containerStackView.pinToEdges(ofViewController: self)
         
         navigationItem.rightBarButtonItem = continueButton
     }

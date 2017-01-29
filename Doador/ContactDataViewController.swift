@@ -58,7 +58,7 @@ final class ContactDataViewController: UIViewController, BackgroundColorable {
     private func setupSubviews() {
         containerStackView.addArrangedSubview(emailTextField)
         containerStackView.addArrangedSubview(phoneTextField)
-        containerStackView.pinToTopEdges(of: self)
+        containerStackView.pinToTopEdges(ofViewController: self)
         
         navigationItem.rightBarButtonItem = continueButton
     }

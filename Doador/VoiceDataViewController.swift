@@ -29,6 +29,7 @@ final class VoiceDataViewController: UIViewController, BackgroundColorable {
         
         let segmentedControl = UISegmentedControl(items: items)
         segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.tintColor = UIColor.white
         return segmentedControl
     }()
     
@@ -62,7 +63,7 @@ final class VoiceDataViewController: UIViewController, BackgroundColorable {
     private func setupSubviews() {
         containerStackView.addArrangedSubview(voiceTypeSegmentedControl)
         containerStackView.addArrangedSubview(accentTextField)
-        containerStackView.pinToTopEdges(of: self)
+        containerStackView.pinToTopEdges(ofViewController: self)
         
         navigationItem.rightBarButtonItem = continueButton
     }

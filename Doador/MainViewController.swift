@@ -68,7 +68,7 @@ final class MainViewController: UIViewController, BackgroundColorable {
         buttonsStackView.addArrangedSubview(donateVoiceButton)
         buttonsStackView.addArrangedSubview(findDonatorButton)
         containerStackView.addArrangedSubview(buttonsStackView)
-        containerStackView.pinToEdges(of: self)
+        containerStackView.pinToEdges(ofViewController: self)
     }
     
     @objc private func donateVoice() {

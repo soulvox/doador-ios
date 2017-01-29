@@ -55,7 +55,7 @@ final class DonateVoiceTermsViewController: UIViewController, BackgroundColorabl
     
     private func setupSubviews() {
         containerStackView.addArrangedSubview(termsLabel)
-        containerStackView.pinToEdges(of: self)
+        containerStackView.pinToEdges(ofViewController: self)
         
         navigationItem.leftBarButtonItem = dismissButton
         navigationItem.rightBarButtonItem = continueButton

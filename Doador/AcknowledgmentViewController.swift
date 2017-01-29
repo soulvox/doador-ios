@@ -44,7 +44,7 @@ final class AcknowledgmentViewController: UIViewController, BackgroundColorable 
     private func setupSubviews() {
         containerStackView.addArrangedSubview(acknowledgmentLabel)
         containerStackView.addArrangedSubview(startOverButton)
-        containerStackView.pinToEdges(of: self)
+        containerStackView.pinToEdges(ofViewController: self)
     }
     
     @objc private func startOver() {

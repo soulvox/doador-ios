@@ -22,7 +22,7 @@ final class FormCoordinator {
     fileprivate var recordAudioCoordinator: RecordAudioCoordinator?
     
     init(navigationController: UINavigationController?) {
-        self.personalDataViewController = PersonalDataViewController()
+        self.personalDataViewController = PersonalDataViewController(style: .grouped)
         self.navigationController = navigationController
         self.personalDataViewController.delegate = self
     }
@@ -37,7 +37,7 @@ extension FormCoordinator: PersonalDataViewControllerDelegate {
         _ = self.navigationController?.popViewController(animated: true)
     }
     
-    func submit(personalData: PersonalData) {
+    func submit(personalData: PersonalData, contactData: ContactData) {
         self.personalData = personalData
         
         if self.voiceDataViewController == nil {

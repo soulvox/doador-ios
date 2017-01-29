@@ -29,5 +29,4 @@ struct PersonalData {
     let gender: Gender
     let weight: Double
     let height: Double
-    let personalityDescription: String
 }
