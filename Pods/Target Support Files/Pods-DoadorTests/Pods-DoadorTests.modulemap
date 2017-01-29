@@ -1,6 +1,0 @@
-framework module Pods_DoadorTests {
-  umbrella header "Pods-DoadorTests-umbrella.h"
-
-  export *
-  module * { export * }
-}

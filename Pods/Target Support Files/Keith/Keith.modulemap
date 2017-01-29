@@ -1,6 +1,0 @@
-framework module Keith {
-  umbrella header "Keith-umbrella.h"
-
-  export *
-  module * { export * }
-}
