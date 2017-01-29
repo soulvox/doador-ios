@@ -198,7 +198,7 @@ final class PersonalDataViewController: UITableViewController, BackgroundColorab
                 
             case .gender:
                 let cell = SegmentedControlCell(identifier: Sections.PersonalDataRows.gender.label)
-                cell.labelText = "Sexo"
+                cell.labelText = Sections.PersonalDataRows.gender.label
                 cell.items = [PersonalData.Gender.male.label, PersonalData.Gender.female.label]
                 cell.delegate = self
                 return cell

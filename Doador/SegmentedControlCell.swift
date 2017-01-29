@@ -42,6 +42,8 @@ final class SegmentedControlCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .title2)
         label.textColor = UIColor.white
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.8
         return label
     }()
     

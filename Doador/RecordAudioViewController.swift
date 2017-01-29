@@ -38,7 +38,9 @@ final class RecordAudioViewController: UIViewController, BackgroundColorable {
     
     private let buttonsStackView: UIStackView = {
         let stackView = UIStackView.horizontalContainer
-        stackView.distribution = .fillEqually
+        stackView.distribution = .fill
+        stackView.alignment = .center
+        stackView.spacing = 5
         return stackView
     }()
     
@@ -114,6 +116,9 @@ final class RecordAudioViewController: UIViewController, BackgroundColorable {
         containerStackView.addArrangedSubview(textToRecordLabel)
         containerStackView.addArrangedSubview(buttonsStackView)
         containerStackView.pinToEdges(ofViewController: self)
+        
+        playButton.centerXAnchor.constraint(equalTo: buttonsStackView.centerXAnchor, constant: -65).isActive = true
+        recordButton.centerXAnchor.constraint(equalTo: buttonsStackView.centerXAnchor, constant: 65).isActive = true
         
         navigationItem.rightBarButtonItem = continueButton
     }
