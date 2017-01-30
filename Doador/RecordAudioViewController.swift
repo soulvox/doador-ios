@@ -48,6 +48,10 @@ final class RecordAudioViewController: UIViewController, BackgroundColorable {
         let button = UIButton(type: .custom)
         button.setImage(Resources.Images.play.image, for: .normal)
         button.setImage(Resources.Images.pause.image, for: .selected)
+        button.layer.shadowColor = Resources.Colors.shadow.color.cgColor
+        button.layer.shadowOffset = CGSize(width: 5, height: 5)
+        button.layer.shadowOpacity = 0.8
+        button.layer.shadowRadius = 12
         button.addTarget(self, action: #selector(togglePlayPause), for: .touchUpInside)
         button.isEnabled = false
         return button
@@ -57,6 +61,11 @@ final class RecordAudioViewController: UIViewController, BackgroundColorable {
         let button = UIButton(type: .custom)
         let image = Resources.Images.microphone.image
         button.setImage(Resources.Images.microphoneFilled.image, for: .normal)
+        button.layer.shadowColor = Resources.Colors.shadow.color.cgColor
+        button.layer.shadowOffset = CGSize(width: 5, height: 5)
+        button.layer.shadowOpacity = 0.8
+        button.layer.shadowRadius = 12
+        button.layer.masksToBounds = false
         button.addTarget(self, action: #selector(toggleRecordStop), for: .touchUpInside)
         return button
     }()
