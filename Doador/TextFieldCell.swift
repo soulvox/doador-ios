@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import VMaskTextField
 
 protocol TextFieldCellDelegate: class {
     func textFieldDidChange(for identifier: String, text: String)
 }
 
-final class TextFieldCell: UITableViewCell {
+final class TextFieldCell: UITableViewCell, UITextFieldDelegate {
+    
+    enum TextFieldType {
+        case phoneNumber, regular
+    }
     
     weak var delegate: TextFieldCellDelegate?
     
@@ -46,7 +51,9 @@ final class TextFieldCell: UITableViewCell {
         }
     }
     
-    private let identifier: String
+    fileprivate let identifier: String
+    
+    private let type: TextFieldType
     
     private let stackView: UIStackView = {
         return UIStackView.horizontalContainer
@@ -61,11 +68,10 @@ final class TextFieldCell: UITableViewCell {
         return label
     }()
     
-    private let textField: UITextField = {
-        let textField = UITextField()
+    private let textField: VMaskTextField = {
+        let textField = VMaskTextField()
         textField.font = UIFont.preferredFont(forTextStyle: .body)
         textField.borderStyle = .roundedRect
-//        textField.textColor = UIColor.white
         return textField
     }()
     
@@ -73,11 +79,26 @@ final class TextFieldCell: UITableViewCell {
         fatalError()
     }
     
-    init(identifier: String) {
+    init(identifier: String, type: TextFieldType = .regular) {
         self.identifier = identifier
+        self.type = type
         
         super.init(style: .default, reuseIdentifier: String(describing: TextFieldCell.self))
         
+        setConstraints()
+        setAppearance()
+        applyMasks()
+        
+        NotificationCenter.default.addObserver(
+            forName: Notification.Name.UITextFieldTextDidChange,
+            object: textField,
+            queue: .main) { [weak self] (notification) in
+                guard let this = self, let text = this.textField.text else { return }
+                this.delegate?.textFieldDidChange(for: this.identifier, text: text)
+        }
+    }
+    
+    private func setConstraints() {
         stackView.distribution = .fill
         
         stackView.addArrangedSubview(label)
@@ -86,16 +107,24 @@ final class TextFieldCell: UITableViewCell {
         
         let textFieldWidth = (bounds.size.width / 3) * 2
         textField.widthAnchor.constraint(equalToConstant: textFieldWidth).isActive = true
-        
+    }
+    
+    private func setAppearance() {
         backgroundColor = Resources.Colors.tint.color
-        
-        let center = NotificationCenter.default
-        center.addObserver(
-            forName: Notification.Name.UITextFieldTextDidChange,
-            object: textField,
-            queue: .main) { [weak self] (notification) in
-                guard let this = self, let text = this.textField.text else { return }
-                this.delegate?.textFieldDidChange(for: this.identifier, text: text)
+    }
+    
+    private func applyMasks() {
+        switch type {
+        case .phoneNumber:
+            textField.mask = "(##) #########"
+            textField.delegate = self
+            
+        case .regular:
+            break
         }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return self.textField.shouldChangeCharacters(in: range, replacementString: string)
     }
 }

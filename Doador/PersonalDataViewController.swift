@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SAMTextView
 
 protocol PersonalDataViewControllerDelegate: class {
     func dismissPersonalDataViewController()
@@ -237,7 +236,7 @@ final class PersonalDataViewController: UITableViewController, BackgroundColorab
                 return cell
                 
             case .phone:
-                let cell = TextFieldCell(identifier: Sections.ContactDataRows.phone.label)
+                let cell = TextFieldCell(identifier: Sections.ContactDataRows.phone.label, type: .phoneNumber)
                 cell.labelText = Sections.ContactDataRows.phone.label
                 cell.placeholder = Sections.ContactDataRows.phone.placeholder
                 cell.keyboardType = .phonePad

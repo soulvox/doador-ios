@@ -1,15 +1,15 @@
 PODS:
   - Keith (0.2.5)
-  - SAMTextView (0.2.2)
+  - VMaskTextField (1.0.8)
 
 DEPENDENCIES:
   - Keith
-  - SAMTextView
+  - VMaskTextField
 
 SPEC CHECKSUMS:
   Keith: 753c4b532a3f8b174fbca287f9cd4d66e4cc6b06
-  SAMTextView: 979c43bb1fa5859ddfbfeb35e9c296a2b0ec55fd
+  VMaskTextField: e77fe33633f999c5c38e70bed0afece0625624a4
 
-PODFILE CHECKSUM: c845bd5b35a8a2a1a0273f8765c0c9d1a5c26b4d
+PODFILE CHECKSUM: 041a587d8c9f4d765beefced615d56baf241d721
 
 COCOAPODS: 1.1.1
