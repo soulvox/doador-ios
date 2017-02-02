@@ -36,6 +36,95 @@ enum Resources {
         case vowelsToRecord = "A, AAAAAAAAAA \nÉ, ÉÉÉÉÉÉÉÉÉÉÉÉ \nÊ, ÊÊÊÊÊÊÊÊÊÊÊÊ \nI, IIIIIIIIIIIIIIIII \nÓ, ÓÓÓÓÓÓÓÓÓ \nÔ, ÔÔÔÔÔÔÔÔÔ \nU, UUUUUUUUU"
         
         case acknowledgment = "Obrigado pela sua doação! \nAs frases que você gravou contém todos os \nfonemas da língua portuguesa e permitem-nos reconstruir \ntodas palavras do nosso vocabulário. \n\nCaso haja um receptor compatível entraremos em contato."
+        
+        enum Sections {
+            enum PersonalDataForm: Int {
+                case personalData, contactData
+                
+                var label: String {
+                    switch self {
+                    case .personalData:
+                        return "Dados pessoais"
+                        
+                    case .contactData:
+                        return "Dados para contato"
+                    }
+                }
+            }
+        }
+        
+        enum Cells {
+            enum PersonalDataForm {
+                case name, age, gender, weight, height, email, phone
+                
+                var label: String {
+                    switch self {
+                    case .name:
+                        return "Nome"
+                        
+                    case .age:
+                        return "Idade"
+                    
+                    case .gender:
+                        return "Sexo"
+                    
+                    case .weight:
+                        return "Peso (kg)"
+                    
+                    case .height:
+                        return "Altura (m)"
+                    
+                    case .email:
+                        return "E-mail"
+                    
+                    case .phone:
+                        return "Telefone"
+                    }
+                }
+                
+                var placeholder: String {
+                    switch self {
+                    case .name:
+                        return "João Silva"
+                    
+                    case .age:
+                        return "30"
+                    
+                    case .gender:
+                        return ""
+                    
+                    case .weight:
+                        return "80"
+                    
+                    case .height:
+                        return "1,70"
+                    
+                    case .email:
+                        return "joao.silva@exemplo.com"
+                    
+                    case .phone:
+                        return "(11) 222221111"
+                    }
+                }
+            }
+            
+            enum VoiceDataForm {
+                case voiceType, accent, personalityType
+                
+                var label: String {
+                    switch self {
+                    case .voiceType:
+                        return "Tipo de voz"
+                        
+                    case .accent:
+                        return "Sotaque"
+                        
+                    case .personalityType:
+                        return "Personalidade"
+                    }
+                }
+            }
+        }
     }
     
     enum Colors {

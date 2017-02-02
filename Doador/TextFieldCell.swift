@@ -10,14 +10,10 @@ import UIKit
 import VMaskTextField
 
 protocol TextFieldCellDelegate: class {
-    func textFieldDidChange(for identifier: String, text: String)
+    func textFieldShouldReturn() -> Bool
 }
 
-final class TextFieldCell: UITableViewCell, UITextFieldDelegate {
-    
-    enum TextFieldType {
-        case phoneNumber, regular
-    }
+class TextFieldCell: UITableViewCell, UITextFieldDelegate, Validating {
     
     weak var delegate: TextFieldCellDelegate?
     
@@ -51,9 +47,36 @@ final class TextFieldCell: UITableViewCell, UITextFieldDelegate {
         }
     }
     
-    fileprivate let identifier: String
+    var textMask: String? = nil {
+        didSet {
+            textField.mask = textMask
+        }
+    }
     
-    private let type: TextFieldType
+    var textValue: String? {
+        get {
+            guard let text = textField.text else { return nil }
+            
+            let trimmedText = text.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            if trimmedText.characters.count == 0 {
+                return nil
+            }
+            
+            return trimmedText
+        }
+        
+        set {
+            textField.text = newValue
+        }
+    }
+    
+    var isValid: Bool = true {
+        didSet {
+            let textColor = isValid == true ? Resources.Colors.tint.color : UIColor.red
+            textField.textColor = textColor
+        }
+    }
     
     private let stackView: UIStackView = {
         return UIStackView.horizontalContainer
@@ -79,23 +102,13 @@ final class TextFieldCell: UITableViewCell, UITextFieldDelegate {
         fatalError()
     }
     
-    init(identifier: String, type: TextFieldType = .regular) {
-        self.identifier = identifier
-        self.type = type
-        
+    init() {
         super.init(style: .default, reuseIdentifier: String(describing: TextFieldCell.self))
         
         setConstraints()
         setAppearance()
-        applyMasks()
         
-        NotificationCenter.default.addObserver(
-            forName: Notification.Name.UITextFieldTextDidChange,
-            object: textField,
-            queue: .main) { [weak self] (notification) in
-                guard let this = self, let text = this.textField.text else { return }
-                this.delegate?.textFieldDidChange(for: this.identifier, text: text)
-        }
+        textField.delegate = self
     }
     
     private func setConstraints() {
@@ -113,18 +126,28 @@ final class TextFieldCell: UITableViewCell, UITextFieldDelegate {
         backgroundColor = Resources.Colors.tint.color
     }
     
-    private func applyMasks() {
-        switch type {
-        case .phoneNumber:
-            textField.mask = "(##) #########"
-            textField.delegate = self
-            
-        case .regular:
-            break
-        }
+    func validate() -> Bool {
+        return true
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        return self.textField.shouldChangeCharacters(in: range, replacementString: string)
+        
+        if isValid == false {
+            isValid = validate()
+        }
+        
+        if textMask != nil {
+            return self.textField.shouldChangeCharacters(in: range, replacementString: string)
+        }
+        
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        isValid = validate()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return delegate?.textFieldShouldReturn() ?? true
     }
 }

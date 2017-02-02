@@ -8,13 +8,11 @@
 
 import UIKit
 
-protocol SegmentedControlCellDelegate: class {
-    func segmentedControlSelectedItemDidChange(for identifier: String, selectedItemIndex: Int)
-}
-
 final class SegmentedControlCell: UITableViewCell {
     
-    weak var delegate: SegmentedControlCellDelegate?
+    var selectedIndex: Int {
+        return segmentedControl.selectedSegmentIndex
+    }
     
     var labelText: String = "" {
         didSet {
@@ -31,8 +29,6 @@ final class SegmentedControlCell: UITableViewCell {
             segmentedControl.selectedSegmentIndex = 0
         }
     }
-    
-    private let identifier: String
     
     private let stackView: UIStackView = {
         return UIStackView.horizontalContainer
@@ -57,24 +53,23 @@ final class SegmentedControlCell: UITableViewCell {
         fatalError()
     }
     
-    init(identifier: String) {
-        self.identifier = identifier
-        
+    init() {
         super.init(style: .default, reuseIdentifier: String(describing: UITableViewCell.self))
         
+        setConstraints()
+        setAppearance()
+    }
+    
+    private func setConstraints() {
         stackView.addArrangedSubview(label)
         stackView.addArrangedSubview(segmentedControl)
         stackView.pinToEdges(ofView: self)
         
         let segmentedControlWidth = (bounds.size.width / 3) * 2
         segmentedControl.widthAnchor.constraint(equalToConstant: segmentedControlWidth).isActive = true
-        
-        backgroundColor = Resources.Colors.tint.color
-        
-        segmentedControl.addTarget(self, action: #selector(selectedItemDidChange), for: .valueChanged)
     }
     
-    @objc private func selectedItemDidChange() {
-        delegate?.segmentedControlSelectedItemDidChange(for: identifier, selectedItemIndex: segmentedControl.selectedSegmentIndex)
+    private func setAppearance() {
+        backgroundColor = Resources.Colors.tint.color
     }
 }
