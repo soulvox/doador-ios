@@ -12,68 +12,16 @@ protocol VoiceDataViewControllerDelegate: class {
     func submit(voiceData: VoiceData)
 }
 
-final class VoiceDataViewController: UITableViewController, BackgroundColorable, SegmentedControlCellDelegate, PickerCellDelegate {
+final class VoiceDataViewController: UITableViewController, BackgroundColorable {
     
     enum Sections: Int {
-        
         enum VoiceDataRows: Int {
             case voiceType, accent, personalityType
-            
             static var numberOfRows = 3
-            
-            var label: String {
-                switch self {
-                case .voiceType:
-                    return "Tipo de voz"
-                    
-                case .accent:
-                    return "Sotaque"
-                    
-                case .personalityType:
-                    return "Personalidade"
-                }
-            }
-            
-            var placeholder: String {
-                switch self {
-                case .voiceType:
-                    return ""
-                    
-                case .accent:
-                    return "Paulista, Carioca, Mineiro, Gaúcho, etc"
-                    
-                case .personalityType:
-                    return "Descreva sua personalidade (extrovertido, tímido, etc)"
-                }
-            }
-            
-            init?(identifier: String) {
-                switch identifier {
-                case VoiceDataRows.voiceType.label:
-                    self = .voiceType
-                    
-                case VoiceDataRows.accent.label:
-                    self = .accent
-                    
-                case VoiceDataRows.personalityType.label:
-                    self = .personalityType
-                    
-                default:
-                    return nil
-                }
-            }
         }
         
         case voiceData
-        
         static var numberOfSections = 1
-        
-        var label: String {
-            switch self {
-            case .voiceData:
-                return "Voz"
-            }
-        }
     }
     
     weak var delegate: VoiceDataViewControllerDelegate?
@@ -83,9 +31,9 @@ final class VoiceDataViewController: UITableViewController, BackgroundColorable,
         return button
     }()
     
-    private var voiceType: VoiceData.VoiceType = .low
-    private var accent: VoiceData.AccentType?
-    private var personalityType: VoiceData.PersonalityType?
+    private weak var voiceTypeCell: SegmentedControlCell?
+    private weak var accentCell: PickerCell?
+    private weak var personalityTypeCell: PickerCell?
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -129,32 +77,30 @@ final class VoiceDataViewController: UITableViewController, BackgroundColorable,
             
             switch row {
             case .voiceType:
-                let cell = SegmentedControlCell(identifier: Sections.VoiceDataRows.voiceType.label)
-                cell.labelText = Sections.VoiceDataRows.voiceType.label
-                cell.items = [VoiceData.VoiceType.low.label, VoiceData.VoiceType.high.label, VoiceData.VoiceType.other.label]
-                cell.delegate = self
+                let cell = SegmentedControlCell()
+                cell.labelText = Resources.Text.Cells.VoiceDataForm.voiceType.label
+                cell.items = [
+                    VoiceData.VoiceType.low.label,
+                    VoiceData.VoiceType.high.label,
+                    VoiceData.VoiceType.other.label
+                ]
+                
+                voiceTypeCell = cell
                 return cell
                 
             case .accent:
-                let items = [""] + VoiceData.AccentType.items
-                let cell = PickerCell(identifier: Sections.VoiceDataRows.accent.label, items: items)
-                cell.labelText = Sections.VoiceDataRows.accent.label
-                cell.delegate = self
+                let cell = PickerCell(items: VoiceData.AccentType.items)
+                cell.labelText = Resources.Text.Cells.VoiceDataForm.accent.label
+                accentCell = cell
                 return cell
                 
             case .personalityType:
-                let items = [""] + VoiceData.PersonalityType.items
-                let cell = PickerCell(identifier: Sections.VoiceDataRows.personalityType.label, items: items)
-                cell.labelText = Sections.VoiceDataRows.personalityType.label
-                cell.delegate = self
+                let cell = PickerCell(items: VoiceData.PersonalityType.items)
+                cell.labelText = Resources.Text.Cells.VoiceDataForm.personalityType.label
+                personalityTypeCell = cell
                 return cell
             }
         }
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard let section = Sections(rawValue: section) else { return "" }
-        return section.label
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -164,60 +110,13 @@ final class VoiceDataViewController: UITableViewController, BackgroundColorable,
         header.textLabel?.textColor = UIColor.white
     }
     
-    func segmentedControlSelectedItemDidChange(for identifier: String, selectedItemIndex: Int) {
-        if let row = Sections.VoiceDataRows(identifier: identifier) {
-            switch row {
-            case .voiceType:
-                guard let selectedVoiceType = VoiceData.VoiceType(rawValue: selectedItemIndex) else { return }
-                voiceType = selectedVoiceType
-                
-            case .accent, .personalityType:
-                break
-            }
-        }
-    }
-    
-    func pickerSelectedItemDidChange(for identifier: String, selectedItemIndex: Int) {
-        if let row = Sections.VoiceDataRows(identifier: identifier) {
-            switch row {
-            case .voiceType:
-                break
-                
-            case .accent:
-                guard selectedItemIndex != 0 else {
-                    accent = nil
-                    return
-                }
-                
-                let selectedItem = VoiceData.AccentType.items[selectedItemIndex - 1]
-                
-                guard let selectedAccent = VoiceData.AccentType(label: selectedItem) else {
-                    accent = nil
-                    return
-                }
-                
-                accent = selectedAccent
-                
-            case .personalityType:
-                guard selectedItemIndex != 0 else {
-                    personalityType = nil
-                    return
-                }
-                
-                let selectedItem = VoiceData.PersonalityType.items[selectedItemIndex - 1]
-                
-                guard let selectedPersonalityType = VoiceData.PersonalityType(label: selectedItem) else {
-                    personalityType = nil
-                    return
-                }
-                
-                personalityType = selectedPersonalityType
-            }
-        }
-    }
-    
     @objc private func submit() {
-        guard let accent = accent, let personalityType = personalityType else { return }
+        guard let voiceTypeIndex = voiceTypeCell?.selectedIndex,
+            let voiceType = VoiceData.VoiceType(rawValue: voiceTypeIndex),
+            let accentIndex = accentCell?.selectedIndex,
+            let accent = VoiceData.AccentType(rawValue: accentIndex),
+            let personalityTypeIndex = personalityTypeCell?.selectedIndex,
+            let personalityType = VoiceData.PersonalityType(rawValue: personalityTypeIndex) else { return }
         
         let data = VoiceData(voiceType: voiceType, accent: accent, personalityType: personalityType)
         

@@ -22,7 +22,8 @@ final class PickerCell: UITableViewCell, UIPickerViewDataSource, UIPickerViewDel
         }
     }
     
-    private let identifier: String
+    private (set) var selectedIndex: Int = 0
+    
     private let items: [String]
     
     private let stackView: UIStackView = {
@@ -48,25 +49,28 @@ final class PickerCell: UITableViewCell, UIPickerViewDataSource, UIPickerViewDel
         fatalError()
     }
     
-    init(identifier: String, items: [String]) {
-        self.identifier = identifier
-        self.items = items
+    init(items: [String]) {
+        self.items = [""] + items
         
         super.init(style: .default, reuseIdentifier: String(describing: UITableViewCell.self))
         
+        setConstraints()
+        setAppearance()
+        
         picker.dataSource = self
         picker.delegate = self
-        
+    }
+    
+    private func setConstraints() {
         stackView.spacing = 0
         stackView.distribution = .fill
         
         stackView.addArrangedSubview(label)
         stackView.addArrangedSubview(picker)
         stackView.pinToEdges(ofView: self)
-        
-//        let pickerWidth = (bounds.size.width / 3) * 2
-//        picker.widthAnchor.constraint(equalToConstant: pickerWidth).isActive = true
-        
+    }
+    
+    private func setAppearance() {
         backgroundColor = Resources.Colors.tint.color
     }
     
@@ -83,6 +87,6 @@ final class PickerCell: UITableViewCell, UIPickerViewDataSource, UIPickerViewDel
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        delegate?.pickerSelectedItemDidChange(for: identifier, selectedItemIndex: row)
+        selectedIndex = row - 1 // Subtract one due to the empty row inserted in the beginning
     }
 }

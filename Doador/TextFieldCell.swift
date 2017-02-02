@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import VMaskTextField
 
 protocol TextFieldCellDelegate: class {
-    func textFieldDidChange(for identifier: String, text: String)
+    func textFieldShouldReturn() -> Bool
 }
 
-final class TextFieldCell: UITableViewCell {
+class TextFieldCell: UITableViewCell, UITextFieldDelegate, Validating {
     
     weak var delegate: TextFieldCellDelegate?
     
@@ -46,7 +47,36 @@ final class TextFieldCell: UITableViewCell {
         }
     }
     
-    private let identifier: String
+    var textMask: String? = nil {
+        didSet {
+            textField.mask = textMask
+        }
+    }
+    
+    var textValue: String? {
+        get {
+            guard let text = textField.text else { return nil }
+            
+            let trimmedText = text.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            if trimmedText.characters.count == 0 {
+                return nil
+            }
+            
+            return trimmedText
+        }
+        
+        set {
+            textField.text = newValue
+        }
+    }
+    
+    var isValid: Bool = true {
+        didSet {
+            let textColor = isValid == true ? Resources.Colors.tint.color : UIColor.red
+            textField.textColor = textColor
+        }
+    }
     
     private let stackView: UIStackView = {
         return UIStackView.horizontalContainer
@@ -61,11 +91,10 @@ final class TextFieldCell: UITableViewCell {
         return label
     }()
     
-    private let textField: UITextField = {
-        let textField = UITextField()
+    private let textField: VMaskTextField = {
+        let textField = VMaskTextField()
         textField.font = UIFont.preferredFont(forTextStyle: .body)
         textField.borderStyle = .roundedRect
-//        textField.textColor = UIColor.white
         return textField
     }()
     
@@ -73,11 +102,16 @@ final class TextFieldCell: UITableViewCell {
         fatalError()
     }
     
-    init(identifier: String) {
-        self.identifier = identifier
-        
+    init() {
         super.init(style: .default, reuseIdentifier: String(describing: TextFieldCell.self))
         
+        setConstraints()
+        setAppearance()
+        
+        textField.delegate = self
+    }
+    
+    private func setConstraints() {
         stackView.distribution = .fill
         
         stackView.addArrangedSubview(label)
@@ -86,16 +120,34 @@ final class TextFieldCell: UITableViewCell {
         
         let textFieldWidth = (bounds.size.width / 3) * 2
         textField.widthAnchor.constraint(equalToConstant: textFieldWidth).isActive = true
-        
+    }
+    
+    private func setAppearance() {
         backgroundColor = Resources.Colors.tint.color
+    }
+    
+    func validate() -> Bool {
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        let center = NotificationCenter.default
-        center.addObserver(
-            forName: Notification.Name.UITextFieldTextDidChange,
-            object: textField,
-            queue: .main) { [weak self] (notification) in
-                guard let this = self, let text = this.textField.text else { return }
-                this.delegate?.textFieldDidChange(for: this.identifier, text: text)
+        if isValid == false {
+            isValid = validate()
         }
+        
+        if textMask != nil {
+            return self.textField.shouldChangeCharacters(in: range, replacementString: string)
+        }
+        
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        isValid = validate()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return delegate?.textFieldShouldReturn() ?? true
     }
 }

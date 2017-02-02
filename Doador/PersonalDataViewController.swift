@@ -7,126 +7,41 @@
 //
 
 import UIKit
-import SAMTextView
 
 protocol PersonalDataViewControllerDelegate: class {
     func dismissPersonalDataViewController()
     func submit(personalData: PersonalData, contactData: ContactData)
 }
 
-final class PersonalDataViewController: UITableViewController, BackgroundColorable, TextFieldCellDelegate, SegmentedControlCellDelegate {
+final class PersonalDataViewController: UITableViewController, BackgroundColorable, TextFieldCellDelegate {
     
     enum Sections: Int {
         
         enum PersonalDataRows: Int {
             case name, age, gender, weight, height
-            
             static var numberOfRows = 5
-            
-            var label: String {
-                switch self {
-                    case .name: return "Nome"
-                    case .age: return "Idade"
-                    case .gender: return "Sexo"
-                    case .weight: return "Peso"
-                    case .height: return "Altura"
-                }
-            }
-            
-            var placeholder: String {
-                switch self {
-                    case .name: return "Nome completo"
-                    case .age: return "Idade"
-                    case .gender: return "Sexo"
-                    case .weight: return "Peso (kg)"
-                    case .height: return "Altura (m)"
-                }
-            }
-            
-            init?(identifier: String) {
-                switch identifier {
-                case PersonalDataRows.name.label:
-                    self = .name
-                    
-                case PersonalDataRows.age.label:
-                    self = .age
-                    
-                case PersonalDataRows.gender.label:
-                    self = .gender
-                    
-                case PersonalDataRows.weight.label:
-                    self = .weight
-                    
-                case PersonalDataRows.height.label:
-                    self = .height
-                    
-                default:
-                    return nil
-                }
-            }
         }
         
         enum ContactDataRows: Int {
             case email, phone
-            
             static var numberOfRows = 2
-            
-            var label: String {
-                switch self {
-                    case .email: return "E-mail"
-                    case .phone: return "Telefone"
-                }
-            }
-            
-            var placeholder: String {
-                switch self {
-                    case .email: return "E-mail"
-                    case .phone: return "Telefone"
-                }
-            }
-            
-            init?(identifier: String) {
-                switch identifier {
-                case ContactDataRows.email.label:
-                    self = .email
-                    
-                case ContactDataRows.phone.label:
-                    self = .phone
-                    
-                default:
-                    return nil
-                }
-            }
         }
         
         case personalData
         case contactData
         
         static var numberOfSections = 2
-        
-        var label: String {
-            switch self {
-                case .personalData: return "Dados pessoais"
-                case .contactData: return "Dados para contato"
-            }
-        }
     }
     
     weak var delegate: PersonalDataViewControllerDelegate?
     
-    private var name: String?
-    private var age: Int?
-    private var gender: PersonalData.Gender = .male
-    private var weight: Double?
-    private var height: Double?
-    private var email: String?
-    private var phone: String?
-    
-    private let numberFormatter: NumberFormatter = {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.locale = Locale.current
-        return numberFormatter
-    }()
+    private weak var nameCell: TextFieldCell?
+    private weak var ageCell: NumberTextFieldCell?
+    private weak var genderCell: SegmentedControlCell?
+    private weak var weightCell: DecimalTextFieldCell?
+    private weak var heightCell: DecimalTextFieldCell?
+    private weak var emailCell: EmailTextFieldCell?
+    private weak var phoneCell: PhoneTextFieldCell?
     
     private lazy var continueButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: "Continuar", style: .done, target: self, action: #selector(submit))
@@ -148,8 +63,7 @@ final class PersonalDataViewController: UITableViewController, BackgroundColorab
     private func setupSubviews() {
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.allowsSelection = false
-        
+        tableView.allowsSelection = false        
         navigationItem.rightBarButtonItem = continueButton
     }
     
@@ -178,47 +92,45 @@ final class PersonalDataViewController: UITableViewController, BackgroundColorab
             
             switch row {
             case .name:
-                let cell = TextFieldCell(identifier: Sections.PersonalDataRows.name.label)
-                cell.labelText = Sections.PersonalDataRows.name.label
-                cell.placeholder = Sections.PersonalDataRows.name.placeholder
+                let cell = TextFieldCell()
+                cell.labelText = Resources.Text.Cells.PersonalDataForm.name.label
+                cell.placeholder = Resources.Text.Cells.PersonalDataForm.name.placeholder
                 cell.keyboardType = .default
                 cell.autocapitalizationType = .words
                 cell.autocorrectionType = .no
                 cell.delegate = self
+                nameCell = cell
                 return cell
                 
             case .age:
-                let cell = TextFieldCell(identifier: Sections.PersonalDataRows.age.label)
-                cell.labelText = Sections.PersonalDataRows.age.label
-                cell.placeholder = Sections.PersonalDataRows.age.placeholder
-                cell.keyboardType = .numberPad
-                cell.autocorrectionType = .no
+                let cell = NumberTextFieldCell()
+                cell.labelText = Resources.Text.Cells.PersonalDataForm.age.label
+                cell.placeholder = Resources.Text.Cells.PersonalDataForm.age.placeholder
                 cell.delegate = self
+                ageCell = cell
                 return cell
                 
             case .gender:
-                let cell = SegmentedControlCell(identifier: Sections.PersonalDataRows.gender.label)
-                cell.labelText = Sections.PersonalDataRows.gender.label
+                let cell = SegmentedControlCell()
+                cell.labelText = Resources.Text.Cells.PersonalDataForm.gender.label
                 cell.items = [PersonalData.Gender.male.label, PersonalData.Gender.female.label]
-                cell.delegate = self
+                genderCell = cell
                 return cell
                 
             case .weight:
-                let cell = TextFieldCell(identifier: Sections.PersonalDataRows.weight.label)
-                cell.labelText = Sections.PersonalDataRows.weight.label
-                cell.placeholder = Sections.PersonalDataRows.weight.placeholder
-                cell.keyboardType = .decimalPad
-                cell.autocorrectionType = .no
+                let cell = DecimalTextFieldCell()
+                cell.labelText = Resources.Text.Cells.PersonalDataForm.weight.label
+                cell.placeholder = Resources.Text.Cells.PersonalDataForm.weight.placeholder
                 cell.delegate = self
+                weightCell = cell
                 return cell
                 
             case .height:
-                let cell = TextFieldCell(identifier: Sections.PersonalDataRows.height.label)
-                cell.labelText = Sections.PersonalDataRows.height.label
-                cell.placeholder = Sections.PersonalDataRows.height.placeholder
-                cell.keyboardType = .decimalPad
-                cell.autocorrectionType = .no
+                let cell = DecimalTextFieldCell()
+                cell.labelText = Resources.Text.Cells.PersonalDataForm.height.label
+                cell.placeholder = Resources.Text.Cells.PersonalDataForm.height.placeholder
                 cell.delegate = self
+                heightCell = cell
                 return cell
             }
 
@@ -227,30 +139,23 @@ final class PersonalDataViewController: UITableViewController, BackgroundColorab
             
             switch row {
             case .email:
-                let cell = TextFieldCell(identifier: Sections.ContactDataRows.email.label)
-                cell.labelText = Sections.ContactDataRows.email.label
-                cell.placeholder = Sections.ContactDataRows.email.placeholder
-                cell.keyboardType = .emailAddress
-                cell.autocapitalizationType = .none
-                cell.autocorrectionType = .no
+                let validator = EmailValidator()
+                let cell = EmailTextFieldCell(validator: validator)
                 cell.delegate = self
+                emailCell = cell
                 return cell
                 
             case .phone:
-                let cell = TextFieldCell(identifier: Sections.ContactDataRows.phone.label)
-                cell.labelText = Sections.ContactDataRows.phone.label
-                cell.placeholder = Sections.ContactDataRows.phone.placeholder
-                cell.keyboardType = .phonePad
-                cell.autocapitalizationType = .none
-                cell.autocorrectionType = .no
+                let cell = PhoneTextFieldCell()
                 cell.delegate = self
+                phoneCell = cell
                 return cell
             }
         }
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard let section = Sections(rawValue: section) else { return "" }
+        guard let section = Resources.Text.Sections.PersonalDataForm(rawValue: section) else { return "" }
         return section.label
     }
     
@@ -261,64 +166,30 @@ final class PersonalDataViewController: UITableViewController, BackgroundColorab
         header.textLabel?.textColor = UIColor.white
     }
     
-    func textFieldDidChange(for identifier: String, text: String) {
-        if let row = Sections.PersonalDataRows(identifier: identifier) {
-            switch row {
-            case .name:
-                name = text
-                
-            case .age:
-                age = Int(text)
-                
-            case .weight:
-                weight = numberFormatter.number(from: text) as Double?
-                
-            case .height:
-                height = numberFormatter.number(from: text) as Double?
-                
-            default:
-                break
-            }
-        
-        } else if let row = Sections.ContactDataRows(identifier: identifier) {
-            switch row {
-            case .email:
-                email = text
-                
-            case .phone:
-                phone = text
-            }
-        }
-    }
-    
-    func segmentedControlSelectedItemDidChange(for identifier: String, selectedItemIndex: Int) {
-        if let row = Sections.PersonalDataRows(identifier: identifier) {
-            switch row {
-            case .gender:
-                guard let selectedGender = PersonalData.Gender(rawValue: selectedItemIndex) else { return }
-                gender = selectedGender
-                
-            default:
-                break
-            }
-        }
-    }
-    
     @objc private func dismissPersonalDataViewController() {
         delegate?.dismissPersonalDataViewController()
     }
     
     @objc private func submit() {
-        guard let name = name,
-            let age = age,
-            let weight = weight,
-            let height = height,
-            let email = email,
-            let phone = phone else { return }
+        view.endEditing(true)
+        
+        guard let name = nameCell?.textValue,
+            let age = ageCell?.intValue,
+            let genderIndex = genderCell?.selectedIndex,
+            let gender = PersonalData.Gender(rawValue: genderIndex),
+            let weight = weightCell?.doubleValue,
+            let height = heightCell?.doubleValue,
+            let email = emailCell?.textValue,
+            let phone = phoneCell?.textValue else { return }
         
         let personalData = PersonalData(name: name, age: age, gender: gender, weight: weight, height: height)
         let contactData = ContactData(email: email, phoneNumber: phone)
         
         delegate?.submit(personalData: personalData, contactData: contactData)
+    }
+    
+    func textFieldShouldReturn() -> Bool {
+        submit()
+        return true
     }
 }

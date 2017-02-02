@@ -4,7 +4,7 @@ target 'Doador' do
   use_frameworks!
 
   pod 'Keith'
-  pod 'SAMTextView'
+  pod "VMaskTextField"
 
   target 'DoadorTests' do
     inherit! :search_paths
