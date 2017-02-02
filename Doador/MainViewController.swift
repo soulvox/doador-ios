@@ -22,7 +22,9 @@ final class MainViewController: UIViewController, BackgroundColorable {
     }()
     
     private let logoImageView: UIImageView = {
-        return UIImageView(image: Resources.Images.logo.image)
+        let imageView = UIImageView(image: Resources.Images.logo.image)
+        imageView.contentMode = .scaleAspectFit
+        return imageView
     }()
     
     private let descriptionLabel: UILabel = {
