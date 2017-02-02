@@ -28,27 +28,27 @@ struct VoiceData {
     }
     
     enum AccentType: Int {
-        case saoPaulo, saoPauloInterior, rioDeJaneiro, rioDeJaneiroInterior, gaucho, mineiro, other
+        case saoPauloCapital, saoPauloInterior, rioDeJaneiroCapital, rioDeJaneiroInterior, portoAlegre, beloHorizonte, other
         
         var label: String {
             switch self {
-            case .saoPaulo:
-                return "São Paulo"
+            case .saoPauloCapital:
+                return "São Paulo - Capital"
                 
             case .saoPauloInterior:
-                return "Interior de São Paulo"
+                return "São Paulo - Interior"
                 
-            case .rioDeJaneiro:
-                return "Rio de Janeiro"
+            case .rioDeJaneiroCapital:
+                return "Rio de Janeiro - Capital"
                 
             case .rioDeJaneiroInterior:
-                return "Interior do Rio de Janeiro"
+                return "Rio de Janeiro - Interior"
                 
-            case .gaucho:
-                return "Gaúcho"
+            case .portoAlegre:
+                return "Porto Alegre"
                 
-            case .mineiro:
-                return "Mineiro"
+            case .beloHorizonte:
+                return "Belo Horizonte"
                 
             case .other:
                 return "Outro"
@@ -56,28 +56,36 @@ struct VoiceData {
         }
         
         static var items: [String] {
-            return [AccentType.saoPaulo.label, AccentType.saoPauloInterior.label, AccentType.rioDeJaneiro.label, AccentType.rioDeJaneiroInterior.label, AccentType.gaucho.label, AccentType.mineiro.label, AccentType.other.label]
+            return [
+                AccentType.saoPauloCapital.label,
+                AccentType.saoPauloInterior.label,
+                AccentType.rioDeJaneiroCapital.label,
+                AccentType.rioDeJaneiroInterior.label,
+                AccentType.portoAlegre.label,
+                AccentType.beloHorizonte.label,
+                AccentType.other.label
+            ]
         }
         
         init?(label: String) {
             switch label {
-            case AccentType.saoPaulo.label:
-                self = .saoPaulo
+            case AccentType.saoPauloCapital.label:
+                self = .saoPauloCapital
                 
             case AccentType.saoPauloInterior.label:
                 self = .saoPauloInterior
                 
-            case AccentType.rioDeJaneiro.label:
-                self = .rioDeJaneiro
+            case AccentType.rioDeJaneiroCapital.label:
+                self = .rioDeJaneiroCapital
                 
             case AccentType.rioDeJaneiroInterior.label:
                 self = .rioDeJaneiroInterior
                 
-            case AccentType.gaucho.label:
-                self = .gaucho
+            case AccentType.portoAlegre.label:
+                self = .portoAlegre
                 
-            case AccentType.mineiro.label:
-                self = .mineiro
+            case AccentType.beloHorizonte.label:
+                self = .beloHorizonte
                 
             case AccentType.other.label:
                 self = .other
