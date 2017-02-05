@@ -12,7 +12,7 @@ protocol VoiceDataViewControllerDelegate: class {
     func submit(voiceData: VoiceData)
 }
 
-final class VoiceDataViewController: UITableViewController, BackgroundColorable {
+final class VoiceDataViewController: UITableViewController {
     
     enum Sections: Int {
         enum VoiceDataRows: Int {
@@ -27,8 +27,12 @@ final class VoiceDataViewController: UITableViewController, BackgroundColorable 
     weak var delegate: VoiceDataViewControllerDelegate?
     
     private lazy var continueButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "Continuar", style: .done, target: self, action: #selector(submit))
-        return button
+        return UIBarButtonItem(
+            title: Resources.Text.Buttons.continue.label,
+            style: .done,
+            target: self,
+            action: #selector(submit)
+        )
     }()
     
     private weak var voiceTypeCell: SegmentedControlCell?

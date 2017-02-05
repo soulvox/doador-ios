@@ -37,6 +37,32 @@ enum Resources {
         
         case acknowledgment = "Obrigado pela sua doação! \nAs frases que você gravou contém todos os \nfonemas da língua portuguesa e permitem-nos reconstruir \ntodas palavras do nosso vocabulário. \n\nCaso haja um receptor compatível entraremos em contato."
         
+        enum Buttons {
+            case accept, `continue`, cancel, donateVoice, findDonator, startOver
+            
+            var label: String {
+                switch self {
+                case .accept:
+                    return "Aceitar"
+                    
+                case .continue:
+                    return "Continuar"
+                    
+                case .cancel:
+                    return "Cancelar"
+                    
+                case .donateVoice:
+                    return "Seja um doador"
+                    
+                case .findDonator:
+                    return "Encontre um doador"
+                    
+                case .startOver:
+                    return "Voltar para o início"
+                }
+            }
+        }
+        
         enum Sections {
             enum PersonalDataForm: Int {
                 case personalData, contactData

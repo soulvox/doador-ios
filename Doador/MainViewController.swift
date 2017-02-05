@@ -13,7 +13,7 @@ protocol MainViewControllerDelegate: class {
     func findDonator()
 }
 
-final class MainViewController: UIViewController, BackgroundColorable {
+final class MainViewController: UIViewController {
     
     weak var delegate: MainViewControllerDelegate?
     
@@ -41,14 +41,14 @@ final class MainViewController: UIViewController, BackgroundColorable {
     
     private let donateVoiceButton: UIButton = {
         let button = UIButton.actionButton
-        button.setTitle("Seja um doador", for: .normal)
+        button.setTitle(Resources.Text.Buttons.donateVoice.label, for: .normal)
         button.addTarget(self, action: #selector(donateVoice), for: .touchUpInside)
         return button
     }()
     
     private let findDonatorButton: UIButton = {
         let button = UIButton.actionButton
-        button.setTitle("Encontre um doador", for: .normal)
+        button.setTitle(Resources.Text.Buttons.findDonator.label, for: .normal)
         button.addTarget(self, action: #selector(findDonator), for: .touchUpInside)
         return button
     }()

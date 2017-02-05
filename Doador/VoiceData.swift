@@ -28,7 +28,13 @@ struct VoiceData {
     }
     
     enum AccentType: Int {
-        case saoPauloCapital, saoPauloInterior, rioDeJaneiroCapital, rioDeJaneiroInterior, portoAlegre, beloHorizonte, other
+        case saoPauloCapital
+        case saoPauloInterior
+        case rioDeJaneiroCapital
+        case rioDeJaneiroInterior
+        case portoAlegre
+        case beloHorizonte
+        case other
         
         var label: String {
             switch self {

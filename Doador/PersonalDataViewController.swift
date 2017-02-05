@@ -10,10 +10,10 @@ import UIKit
 
 protocol PersonalDataViewControllerDelegate: class {
     func dismissPersonalDataViewController()
-    func submit(personalData: PersonalData, contactData: ContactData)
+    func submit(personalData: PersonalData)
 }
 
-final class PersonalDataViewController: UITableViewController, BackgroundColorable, TextFieldCellDelegate {
+final class PersonalDataViewController: UITableViewController, TextFieldCellDelegate {
     
     enum Sections: Int {
         
@@ -44,8 +44,12 @@ final class PersonalDataViewController: UITableViewController, BackgroundColorab
     private weak var phoneCell: PhoneTextFieldCell?
     
     private lazy var continueButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "Continuar", style: .done, target: self, action: #selector(submit))
-        return button
+        return UIBarButtonItem(
+            title: Resources.Text.Buttons.continue.label,
+            style: .done,
+            target: self,
+            action: #selector(submit)
+        )
     }()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -63,7 +67,8 @@ final class PersonalDataViewController: UITableViewController, BackgroundColorab
     private func setupSubviews() {
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.allowsSelection = false        
+        tableView.allowsSelection = false
+        
         navigationItem.rightBarButtonItem = continueButton
     }
     
@@ -182,10 +187,17 @@ final class PersonalDataViewController: UITableViewController, BackgroundColorab
             let email = emailCell?.textValue,
             let phone = phoneCell?.textValue else { return }
         
-        let personalData = PersonalData(name: name, age: age, gender: gender, weight: weight, height: height)
-        let contactData = ContactData(email: email, phoneNumber: phone)
+        let personalData = PersonalData(
+            name: name,
+            age: age, 
+            gender: gender, 
+            weight: weight, 
+            height: height, 
+            email: email,
+            phone: phone
+        )
         
-        delegate?.submit(personalData: personalData, contactData: contactData)
+        delegate?.submit(personalData: personalData)
     }
     
     func textFieldShouldReturn() -> Bool {

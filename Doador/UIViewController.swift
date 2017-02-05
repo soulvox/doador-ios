@@ -17,3 +17,9 @@ extension UIViewController {
         navigationItem.hidesBackButton = true
     }
 }
+
+extension UIViewController {
+    func setBackgroundTintColor() {
+        view?.backgroundColor = Resources.Colors.tint.color
+    }
+}

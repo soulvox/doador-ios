@@ -12,7 +12,7 @@ protocol AcknowledgmentViewControllerDelegate: class {
     func startOver()
 }
 
-final class AcknowledgmentViewController: UIViewController, BackgroundColorable {
+final class AcknowledgmentViewController: UIViewController {
     
     weak var delegate: AcknowledgmentViewControllerDelegate?
     
@@ -28,7 +28,7 @@ final class AcknowledgmentViewController: UIViewController, BackgroundColorable 
     
     private let startOverButton: UIButton = {
         let button = UIButton.actionButton
-        button.setTitle("Voltar para o início", for: .normal)
+        button.setTitle(Resources.Text.Buttons.startOver.label, for: .normal)
         button.addTarget(self, action: #selector(startOver), for: .touchUpInside)
         return button
     }()

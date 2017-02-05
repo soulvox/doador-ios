@@ -13,11 +13,9 @@ final class FormCoordinator {
     fileprivate weak var navigationController: UINavigationController?
     fileprivate let personalDataViewController: PersonalDataViewController
     fileprivate var voiceDataViewController: VoiceDataViewController?
-    fileprivate var contactDataViewController: ContactDataViewController?
     
     fileprivate var personalData: PersonalData?
     fileprivate var voiceData: VoiceData?
-    fileprivate var contactData: ContactData?
     
     fileprivate var recordAudioCoordinator: RecordAudioCoordinator?
     
@@ -37,7 +35,7 @@ extension FormCoordinator: PersonalDataViewControllerDelegate {
         _ = self.navigationController?.popViewController(animated: true)
     }
     
-    func submit(personalData: PersonalData, contactData: ContactData) {
+    func submit(personalData: PersonalData) {
         self.personalData = personalData
         
         if self.voiceDataViewController == nil {
@@ -57,25 +55,6 @@ extension FormCoordinator: VoiceDataViewControllerDelegate {
             self.recordAudioCoordinator = RecordAudioCoordinator(navigationController: navigationController)
         }
         
-        self.recordAudioCoordinator?.showViewController()
-        
-//        if self.contactDataViewController == nil {
-//            self.contactDataViewController = ContactDataViewController()
-//            self.contactDataViewController?.delegate = self
-//        }
-//        
-//        self.navigationController?.pushViewController(contactDataViewController!, animated: true)
-    }
-}
-
-extension FormCoordinator: ContactDataViewControllerDelegate {
-    func submit(contactData: ContactData) {
-        self.contactData = contactData
-        
-        guard let personalData = personalData,
-            let voiceData = voiceData else { return }
-        
-        self.recordAudioCoordinator = RecordAudioCoordinator(navigationController: navigationController)
         self.recordAudioCoordinator?.showViewController()
     }
 }

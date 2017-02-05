@@ -13,7 +13,7 @@ protocol DonateVoiceTermsViewControllerDelegate: class {
     func acceptTerms()
 }
 
-final class DonateVoiceTermsViewController: UIViewController, BackgroundColorable {
+final class DonateVoiceTermsViewController: UIViewController {
     
     weak var delegate: DonateVoiceTermsViewControllerDelegate?
     
@@ -32,13 +32,21 @@ final class DonateVoiceTermsViewController: UIViewController, BackgroundColorabl
     }()
     
     private lazy var dismissButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "Cancelar", style: .done, target: self, action: #selector(dismissDonateVoiceTermsViewController))
-        return button
+        return UIBarButtonItem(
+            title: Resources.Text.Buttons.cancel.label,
+            style: .done,
+            target: self,
+            action: #selector(dismissDonateVoiceTermsViewController)
+        )
     }()
     
     private lazy var continueButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "Aceitar", style: .done, target: self, action: #selector(acceptTerms))
-        return button
+        return UIBarButtonItem(
+            title: Resources.Text.Buttons.accept.label,
+            style: .done,
+            target: self,
+            action: #selector(acceptTerms)
+        )
     }()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

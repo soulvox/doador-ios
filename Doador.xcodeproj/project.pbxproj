@@ -24,8 +24,6 @@
 		08F23BBA1E3D4C4600D23224 /* PersonalDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23BB91E3D4C4600D23224 /* PersonalDataViewController.swift */; };
 		08F23BBE1E3D4DB800D23224 /* VoiceDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23BBD1E3D4DB800D23224 /* VoiceDataViewController.swift */; };
 		08F23BC01E3D4DE000D23224 /* VoiceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23BBF1E3D4DE000D23224 /* VoiceData.swift */; };
-		08F23BC21E3D506900D23224 /* ContactDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23BC11E3D506900D23224 /* ContactDataViewController.swift */; };
-		08F23BC41E3D509200D23224 /* ContactData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23BC31E3D509200D23224 /* ContactData.swift */; };
 		08F23BC71E3D795A00D23224 /* RecordAudioCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23BC61E3D795A00D23224 /* RecordAudioCoordinator.swift */; };
 		08F23BCA1E3D914000D23224 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23BC91E3D914000D23224 /* MainViewController.swift */; };
 		08F23BCC1E3D925F00D23224 /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23BCB1E3D925F00D23224 /* UIStackView.swift */; };
@@ -36,7 +34,6 @@
 		08F23BE01E3E108600D23224 /* AcknowledgmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23BDF1E3E108600D23224 /* AcknowledgmentViewController.swift */; };
 		08F23BE21E3E10A100D23224 /* AcknowledgmentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23BE11E3E10A100D23224 /* AcknowledgmentCoordinator.swift */; };
 		08F23BE51E3E124000D23224 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23BE41E3E124000D23224 /* UIView.swift */; };
-		08F23BE81E3E151800D23224 /* BackgroundColorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23BE71E3E151800D23224 /* BackgroundColorable.swift */; };
 		08F23BEA1E3E1AC700D23224 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23BE91E3E1AC700D23224 /* UIViewController.swift */; };
 		08F23BEC1E3E255500D23224 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23BEB1E3E255500D23224 /* TextFieldCell.swift */; };
 		08F23BEE1E3E28F700D23224 /* SegmentedControlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F23BED1E3E28F700D23224 /* SegmentedControlCell.swift */; };
@@ -91,8 +88,6 @@
 		08F23BB91E3D4C4600D23224 /* PersonalDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalDataViewController.swift; sourceTree = "<group>"; };
 		08F23BBD1E3D4DB800D23224 /* VoiceDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceDataViewController.swift; sourceTree = "<group>"; };
 		08F23BBF1E3D4DE000D23224 /* VoiceData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceData.swift; sourceTree = "<group>"; };
-		08F23BC11E3D506900D23224 /* ContactDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactDataViewController.swift; sourceTree = "<group>"; };
-		08F23BC31E3D509200D23224 /* ContactData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactData.swift; sourceTree = "<group>"; };
 		08F23BC61E3D795A00D23224 /* RecordAudioCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordAudioCoordinator.swift; sourceTree = "<group>"; };
 		08F23BC91E3D914000D23224 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		08F23BCB1E3D925F00D23224 /* UIStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
@@ -103,7 +98,6 @@
 		08F23BDF1E3E108600D23224 /* AcknowledgmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcknowledgmentViewController.swift; sourceTree = "<group>"; };
 		08F23BE11E3E10A100D23224 /* AcknowledgmentCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcknowledgmentCoordinator.swift; sourceTree = "<group>"; };
 		08F23BE41E3E124000D23224 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
-		08F23BE71E3E151800D23224 /* BackgroundColorable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundColorable.swift; sourceTree = "<group>"; };
 		08F23BE91E3E1AC700D23224 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		08F23BEB1E3E255500D23224 /* TextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		08F23BED1E3E28F700D23224 /* SegmentedControlCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControlCell.swift; sourceTree = "<group>"; };
@@ -217,7 +211,6 @@
 				08F23BB71E3D4B1300D23224 /* FormCoordinator.swift */,
 				08F23BB91E3D4C4600D23224 /* PersonalDataViewController.swift */,
 				08F23BBD1E3D4DB800D23224 /* VoiceDataViewController.swift */,
-				08F23BC11E3D506900D23224 /* ContactDataViewController.swift */,
 				08F23BEB1E3E255500D23224 /* TextFieldCell.swift */,
 				089F348C1E42B58300F8772F /* NumberTextFieldCell.swift */,
 				089F348A1E42B51400F8772F /* DecimalTextFieldCell.swift */,
@@ -225,7 +218,6 @@
 				08F23BF91E41466300D23224 /* PhoneTextFieldCell.swift */,
 				08F23BED1E3E28F700D23224 /* SegmentedControlCell.swift */,
 				08F23BEF1E3E59DF00D23224 /* PickerCell.swift */,
-				089F34881E42B10400F8772F /* Validating.swift */,
 				08F23BF31E400D7B00D23224 /* EmailValidator.swift */,
 			);
 			name = Form;
@@ -236,7 +228,6 @@
 			children = (
 				08F23BB51E3D484800D23224 /* PersonalData.swift */,
 				08F23BBF1E3D4DE000D23224 /* VoiceData.swift */,
-				08F23BC31E3D509200D23224 /* ContactData.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -307,7 +298,7 @@
 		08F23BE61E3E14ED00D23224 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				08F23BE71E3E151800D23224 /* BackgroundColorable.swift */,
+				089F34881E42B10400F8772F /* Validating.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -619,7 +610,6 @@
 				08F23BF81E41458500D23224 /* EmailTextFieldCell.swift in Sources */,
 				08F23BEE1E3E28F700D23224 /* SegmentedControlCell.swift in Sources */,
 				08F23BF41E400D7B00D23224 /* EmailValidator.swift in Sources */,
-				08F23BC21E3D506900D23224 /* ContactDataViewController.swift in Sources */,
 				08F23BA11E3AA8C700D23224 /* Resources.swift in Sources */,
 				08F23BFA1E41466300D23224 /* PhoneTextFieldCell.swift in Sources */,
 				08F23BE51E3E124000D23224 /* UIView.swift in Sources */,
@@ -627,7 +617,6 @@
 				08F23BA71E3ABBEA00D23224 /* RecordAudioViewController.swift in Sources */,
 				08F23BA91E3ABEF900D23224 /* AudioRecorder.swift in Sources */,
 				08F23BD91E3DA5A100D23224 /* UIButton.swift in Sources */,
-				08F23BE81E3E151800D23224 /* BackgroundColorable.swift in Sources */,
 				08F23BC71E3D795A00D23224 /* RecordAudioCoordinator.swift in Sources */,
 				089F348B1E42B51400F8772F /* DecimalTextFieldCell.swift in Sources */,
 				08F23BDE1E3E03FB00D23224 /* UILabel.swift in Sources */,
@@ -645,7 +634,6 @@
 				08F23BB81E3D4B1300D23224 /* FormCoordinator.swift in Sources */,
 				089F34891E42B10400F8772F /* Validating.swift in Sources */,
 				08F23BBE1E3D4DB800D23224 /* VoiceDataViewController.swift in Sources */,
-				08F23BC41E3D509200D23224 /* ContactData.swift in Sources */,
 				089F348D1E42B58300F8772F /* NumberTextFieldCell.swift in Sources */,
 				08F23BE01E3E108600D23224 /* AcknowledgmentViewController.swift in Sources */,
 				08F23BE21E3E10A100D23224 /* AcknowledgmentCoordinator.swift in Sources */,

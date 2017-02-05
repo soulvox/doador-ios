@@ -13,7 +13,7 @@ protocol RecordAudioViewControllerDelegate: class {
     func submit(recordAudioViewController: RecordAudioViewController, recordedAudioUrl: URL)
 }
 
-final class RecordAudioViewController: UIViewController, BackgroundColorable {
+final class RecordAudioViewController: UIViewController {
     
     enum RecordState {
         case recording, stopped
@@ -71,8 +71,15 @@ final class RecordAudioViewController: UIViewController, BackgroundColorable {
     }()
     
     private lazy var continueButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "Continuar", style: .done, target: self, action: #selector(submit))
+        let button = UIBarButtonItem(
+            title: Resources.Text.Buttons.continue.label,
+            style: .done,
+            target: self,
+            action: #selector(submit)
+        )
+        
         button.isEnabled = false
+        
         return button
     }()
     
