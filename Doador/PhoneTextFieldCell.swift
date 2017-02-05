@@ -10,15 +10,11 @@ import UIKit
 
 final class PhoneTextFieldCell: TextFieldCell {
     
-    override init() {
-        super.init()
+    init() {
+        super.init(textField: UITextField.phoneNumber)
         
         labelText = Resources.Text.Cells.PersonalDataForm.phone.label
         placeholder = Resources.Text.Cells.PersonalDataForm.phone.placeholder
-        keyboardType = .phonePad
-        autocapitalizationType = .none
-        autocorrectionType = .no
-        textMask = "(##) #########"
     }
     
     required init?(coder aDecoder: NSCoder) {

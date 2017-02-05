@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import VMaskTextField
 
 protocol TextFieldCellDelegate: class {
     func textFieldShouldReturn() -> Bool
@@ -44,12 +43,6 @@ class TextFieldCell: UITableViewCell, UITextFieldDelegate, Validating {
     var autocorrectionType: UITextAutocorrectionType = .default {
         didSet {
             textField.autocorrectionType = autocorrectionType
-        }
-    }
-    
-    var textMask: String? = nil {
-        didSet {
-            textField.mask = textMask
         }
     }
     
@@ -91,18 +84,15 @@ class TextFieldCell: UITableViewCell, UITextFieldDelegate, Validating {
         return label
     }()
     
-    private let textField: VMaskTextField = {
-        let textField = VMaskTextField()
-        textField.font = UIFont.preferredFont(forTextStyle: .body)
-        textField.borderStyle = .roundedRect
-        return textField
-    }()
+    private let textField: UITextField
     
     required init?(coder aDecoder: NSCoder) {
         fatalError()
     }
     
-    init() {
+    init(textField: UITextField = UITextField.plain) {
+        self.textField = textField
+        
         super.init(style: .default, reuseIdentifier: String(describing: TextFieldCell.self))
         
         setConstraints()
@@ -134,10 +124,6 @@ class TextFieldCell: UITableViewCell, UITextFieldDelegate, Validating {
         
         if isValid == false {
             isValid = validate()
-        }
-        
-        if textMask != nil {
-            return self.textField.shouldChangeCharacters(in: range, replacementString: string)
         }
         
         return true

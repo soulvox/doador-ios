@@ -129,7 +129,7 @@ enum Resources {
                         return "joao.silva@exemplo.com"
                     
                     case .phone:
-                        return "(11) 222221111"
+                        return "XX XXXXX-XXXX"
                     }
                 }
             }

@@ -15,7 +15,7 @@ final class NumberTextFieldCell: TextFieldCell {
         return Int(text)
     }
     
-    override init() {
+    init() {
         super.init()
         
         keyboardType = .numberPad

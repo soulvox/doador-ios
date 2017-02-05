@@ -12,6 +12,7 @@
 		0819F5E61E3AA260006D6CBD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0819F5E41E3AA260006D6CBD /* LaunchScreen.storyboard */; };
 		0819F5F11E3AA260006D6CBD /* DoadorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819F5F01E3AA260006D6CBD /* DoadorTests.swift */; };
 		0819F5FC1E3AA260006D6CBD /* DoadorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819F5FB1E3AA260006D6CBD /* DoadorUITests.swift */; };
+		0830FFD71E47CC1A00923E23 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0830FFD61E47CC1A00923E23 /* UITextField.swift */; };
 		089F34891E42B10400F8772F /* Validating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089F34881E42B10400F8772F /* Validating.swift */; };
 		089F348B1E42B51400F8772F /* DecimalTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089F348A1E42B51400F8772F /* DecimalTextFieldCell.swift */; };
 		089F348D1E42B58300F8772F /* NumberTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089F348C1E42B58300F8772F /* NumberTextFieldCell.swift */; };
@@ -76,6 +77,7 @@
 		0819F5F71E3AA260006D6CBD /* DoadorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoadorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0819F5FB1E3AA260006D6CBD /* DoadorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoadorUITests.swift; sourceTree = "<group>"; };
 		0819F5FD1E3AA260006D6CBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0830FFD61E47CC1A00923E23 /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		089F34881E42B10400F8772F /* Validating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validating.swift; sourceTree = "<group>"; };
 		089F348A1E42B51400F8772F /* DecimalTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecimalTextFieldCell.swift; sourceTree = "<group>"; };
 		089F348C1E42B58300F8772F /* NumberTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberTextFieldCell.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				08F23BD81E3DA5A100D23224 /* UIButton.swift */,
 				08F23BDD1E3E03FB00D23224 /* UILabel.swift */,
 				08F23BCB1E3D925F00D23224 /* UIStackView.swift */,
+				0830FFD61E47CC1A00923E23 /* UITextField.swift */,
 				08F23BE41E3E124000D23224 /* UIView.swift */,
 				08F23BE91E3E1AC700D23224 /* UIViewController.swift */,
 			);
@@ -623,6 +626,7 @@
 				0819F5DC1E3AA260006D6CBD /* AppDelegate.swift in Sources */,
 				08F23BD21E3D9EE900D23224 /* DonateVoiceTermsViewController.swift in Sources */,
 				08F23BC01E3D4DE000D23224 /* VoiceData.swift in Sources */,
+				0830FFD71E47CC1A00923E23 /* UITextField.swift in Sources */,
 				08F23BF01E3E59DF00D23224 /* PickerCell.swift in Sources */,
 				08F23BCA1E3D914000D23224 /* MainViewController.swift in Sources */,
 				08F23BEA1E3E1AC700D23224 /* UIViewController.swift in Sources */,

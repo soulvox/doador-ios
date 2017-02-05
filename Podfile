@@ -4,7 +4,7 @@ target 'Doador' do
   use_frameworks!
 
   pod 'Keith'
-  pod "VMaskTextField"
+  pod 'PhoneNumberKit', '~> 1.2'
 
   target 'DoadorTests' do
     inherit! :search_paths

@@ -1,15 +1,20 @@
 PODS:
   - Keith (0.2.5)
-  - VMaskTextField (1.0.8)
+  - PhoneNumberKit (1.2.2):
+    - PhoneNumberKit/PhoneNumberKitCore (= 1.2.2)
+    - PhoneNumberKit/UIKit (= 1.2.2)
+  - PhoneNumberKit/PhoneNumberKitCore (1.2.2)
+  - PhoneNumberKit/UIKit (1.2.2):
+    - PhoneNumberKit/PhoneNumberKitCore
 
 DEPENDENCIES:
   - Keith
-  - VMaskTextField
+  - PhoneNumberKit (~> 1.2)
 
 SPEC CHECKSUMS:
   Keith: 753c4b532a3f8b174fbca287f9cd4d66e4cc6b06
-  VMaskTextField: e77fe33633f999c5c38e70bed0afece0625624a4
+  PhoneNumberKit: ffae8f18fb78c1425c7af973711b0b0fd4f4104f
 
-PODFILE CHECKSUM: 041a587d8c9f4d765beefced615d56baf241d721
+PODFILE CHECKSUM: 9a5efa85de5f4011683694646613a3e558640a50
 
 COCOAPODS: 1.1.1

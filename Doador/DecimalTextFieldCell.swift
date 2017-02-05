@@ -15,7 +15,7 @@ final class DecimalTextFieldCell: TextFieldCell {
         return Double(text)
     }
     
-    override init() {
+    init() {
         super.init()
         
         keyboardType = .decimalPad
