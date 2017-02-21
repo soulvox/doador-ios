@@ -149,6 +149,19 @@ enum Resources {
                         return "Personalidade"
                     }
                 }
+                
+                var placeholder: String {
+                    switch self {
+                    case .voiceType:
+                        return "Descreva sua voz"
+                        
+                    case .accent:
+                        return "Descreva seu sotaque"
+                        
+                    case .personalityType:
+                        return "Descreva sua personalidade"
+                    }
+                }
             }
         }
     }

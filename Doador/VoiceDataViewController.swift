@@ -39,6 +39,10 @@ final class VoiceDataViewController: UITableViewController {
     private weak var accentCell: PickerCell?
     private weak var personalityTypeCell: PickerCell?
     
+    private var voiceTypeCellExpanded = false
+    private var accentCellExpanded = false
+    private var personalityTypeCellExpanded = false
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -52,10 +56,7 @@ final class VoiceDataViewController: UITableViewController {
     }
     
     private func setupSubviews() {
-        tableView.estimatedRowHeight = 80
-        tableView.rowHeight = UITableViewAutomaticDimension
         tableView.allowsSelection = false
-        
         navigationItem.rightBarButtonItem = continueButton
     }
     
@@ -72,6 +73,8 @@ final class VoiceDataViewController: UITableViewController {
         }
     }
     
+    
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let section = Sections(rawValue: indexPath.section) else { return UITableViewCell() }
         
@@ -83,11 +86,20 @@ final class VoiceDataViewController: UITableViewController {
             case .voiceType:
                 let cell = SegmentedControlCell()
                 cell.labelText = Resources.Text.Cells.VoiceDataForm.voiceType.label
+                cell.displaysExtraTextFieldOnLastItemSelection = true
                 cell.items = [
                     VoiceData.VoiceType.low.label,
                     VoiceData.VoiceType.high.label,
                     VoiceData.VoiceType.other.label
                 ]
+                
+                cell.placeholder = Resources.Text.Cells.VoiceDataForm.voiceType.placeholder
+                
+                cell.heightDidChange = { [weak tableView] expanded in
+                    self.voiceTypeCellExpanded = expanded
+                    tableView?.beginUpdates()
+                    tableView?.endUpdates()
+                }
                 
                 voiceTypeCell = cell
                 return cell
@@ -112,6 +124,23 @@ final class VoiceDataViewController: UITableViewController {
         
         header.textLabel?.font = UIFont.preferredFont(forTextStyle: .caption1)
         header.textLabel?.textColor = UIColor.white
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard let section = Sections(rawValue: indexPath.section) else { return 80 }
+        
+        switch section {
+        case .voiceData:
+            guard let row = Sections.VoiceDataRows(rawValue: indexPath.row) else { return 80 }
+            
+            switch row {
+            case .voiceType:
+                return voiceTypeCellExpanded ? 120 : 80
+                
+            case .accent, .personalityType:
+                return 180
+            }
+        }
     }
     
     @objc private func submit() {
