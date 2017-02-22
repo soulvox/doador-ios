@@ -73,8 +73,6 @@ final class VoiceDataViewController: UITableViewController {
         }
     }
     
-    
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let section = Sections(rawValue: indexPath.section) else { return UITableViewCell() }
         
@@ -90,7 +88,7 @@ final class VoiceDataViewController: UITableViewController {
                 cell.items = [
                     VoiceData.VoiceType.low.label,
                     VoiceData.VoiceType.high.label,
-                    VoiceData.VoiceType.other.label
+                    VoiceData.VoiceType.other(description: "").label
                 ]
                 
                 cell.placeholder = Resources.Text.Cells.VoiceDataForm.voiceType.placeholder
@@ -107,12 +105,30 @@ final class VoiceDataViewController: UITableViewController {
             case .accent:
                 let cell = PickerCell(items: VoiceData.AccentType.items)
                 cell.labelText = Resources.Text.Cells.VoiceDataForm.accent.label
+                cell.displaysExtraTextFieldOnLastItemSelection = true
+                cell.placeholder = Resources.Text.Cells.VoiceDataForm.accent.placeholder
+                
+                cell.heightDidChange = { [weak tableView] expanded in
+                    self.accentCellExpanded = expanded
+                    tableView?.beginUpdates()
+                    tableView?.endUpdates()
+                }
+                
                 accentCell = cell
                 return cell
                 
             case .personalityType:
                 let cell = PickerCell(items: VoiceData.PersonalityType.items)
                 cell.labelText = Resources.Text.Cells.VoiceDataForm.personalityType.label
+                cell.displaysExtraTextFieldOnLastItemSelection = true
+                cell.placeholder = Resources.Text.Cells.VoiceDataForm.personalityType.placeholder
+                
+                cell.heightDidChange = { [weak tableView] expanded in
+                    self.personalityTypeCellExpanded = expanded
+                    tableView?.beginUpdates()
+                    tableView?.endUpdates()
+                }
+                
                 personalityTypeCell = cell
                 return cell
             }
@@ -137,19 +153,27 @@ final class VoiceDataViewController: UITableViewController {
             case .voiceType:
                 return voiceTypeCellExpanded ? 120 : 80
                 
-            case .accent, .personalityType:
-                return 180
+            case .accent:
+                return accentCellExpanded ? 220 : 180
+                
+            case .personalityType:
+                return personalityTypeCellExpanded ? 220 : 180
             }
         }
     }
     
     @objc private func submit() {
         guard let voiceTypeIndex = voiceTypeCell?.selectedIndex,
-            let voiceType = VoiceData.VoiceType(rawValue: voiceTypeIndex),
             let accentIndex = accentCell?.selectedIndex,
-            let accent = VoiceData.AccentType(rawValue: accentIndex),
-            let personalityTypeIndex = personalityTypeCell?.selectedIndex,
-            let personalityType = VoiceData.PersonalityType(rawValue: personalityTypeIndex) else { return }
+            let personalityTypeIndex = personalityTypeCell?.selectedIndex else { return }
+        
+        let voiceTypeDescription = voiceTypeCell?.textValue ?? ""
+        let accentDescription = accentCell?.textValue ?? ""
+        let personalityDescription = personalityTypeCell?.textValue ?? ""
+        
+        guard let voiceType = VoiceData.VoiceType(index: voiceTypeIndex, extraDescription: voiceTypeDescription),
+            let accent = VoiceData.AccentType(index: accentIndex, extraDescription: accentDescription),
+            let personalityType = VoiceData.PersonalityType(index: personalityTypeIndex, extraDescription: personalityDescription) else { return }
         
         let data = VoiceData(voiceType: voiceType, accent: accent, personalityType: personalityType)
         

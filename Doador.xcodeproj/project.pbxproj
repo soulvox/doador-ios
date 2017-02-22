@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		080FFC761E5BCA4300025B4F /* DisplaysExtraTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080FFC751E5BCA4300025B4F /* DisplaysExtraTextField.swift */; };
 		0819F5DC1E3AA260006D6CBD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819F5DB1E3AA260006D6CBD /* AppDelegate.swift */; };
 		0819F5E31E3AA260006D6CBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0819F5E21E3AA260006D6CBD /* Assets.xcassets */; };
 		0819F5E61E3AA260006D6CBD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0819F5E41E3AA260006D6CBD /* LaunchScreen.storyboard */; };
@@ -66,6 +67,7 @@
 
 /* Begin PBXFileReference section */
 		0674CE8EC66E5CBBA56E9956 /* Pods-DoadorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoadorTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DoadorTests/Pods-DoadorTests.debug.xcconfig"; sourceTree = "<group>"; };
+		080FFC751E5BCA4300025B4F /* DisplaysExtraTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplaysExtraTextField.swift; sourceTree = "<group>"; };
 		0819F5D81E3AA260006D6CBD /* Doador.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Doador.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0819F5DB1E3AA260006D6CBD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0819F5E21E3AA260006D6CBD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				089F34881E42B10400F8772F /* Validating.swift */,
+				080FFC751E5BCA4300025B4F /* DisplaysExtraTextField.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -623,6 +626,7 @@
 				08F23BC71E3D795A00D23224 /* RecordAudioCoordinator.swift in Sources */,
 				089F348B1E42B51400F8772F /* DecimalTextFieldCell.swift in Sources */,
 				08F23BDE1E3E03FB00D23224 /* UILabel.swift in Sources */,
+				080FFC761E5BCA4300025B4F /* DisplaysExtraTextField.swift in Sources */,
 				0819F5DC1E3AA260006D6CBD /* AppDelegate.swift in Sources */,
 				08F23BD21E3D9EE900D23224 /* DonateVoiceTermsViewController.swift in Sources */,
 				08F23BC01E3D4DE000D23224 /* VoiceData.swift in Sources */,

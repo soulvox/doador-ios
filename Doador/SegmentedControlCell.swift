@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class SegmentedControlCell: UITableViewCell {
+final class SegmentedControlCell: UITableViewCell, DisplaysExtraTextField, UITextFieldDelegate {
     
     var selectedIndex: Int {
         return segmentedControl.selectedSegmentIndex
@@ -100,6 +100,7 @@ final class SegmentedControlCell: UITableViewCell {
     
     private lazy var textField: UITextField = {
         let textField = UITextField.plain
+        textField.delegate = self
         return textField
     }()
     
@@ -129,7 +130,7 @@ final class SegmentedControlCell: UITableViewCell {
         
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.topAnchor.constraint(equalTo: innerStackView.bottomAnchor, constant: 16).isActive = true
-        textField.leadingAnchor.constraint(equalTo: segmentedControl.leadingAnchor).isActive = true
+        textField.leadingAnchor.constraint(equalTo: innerStackView.leadingAnchor).isActive = true
         textField.trailingAnchor.constraint(equalTo: innerStackView.trailingAnchor).isActive = true
         
         textField.isHidden = true
@@ -163,5 +164,10 @@ final class SegmentedControlCell: UITableViewCell {
         }
         
         heightDidChange?(!textField.isHidden)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

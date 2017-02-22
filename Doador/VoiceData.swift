@@ -10,8 +10,10 @@ import Foundation
 
 struct VoiceData {
     
-    enum VoiceType: Int {
-        case low, high, other
+    enum VoiceType {
+        case low
+        case high
+        case other(description: String)
         
         var label: String {
             switch self {
@@ -25,16 +27,32 @@ struct VoiceData {
                 return "Outro"
             }
         }
+        
+        init?(index: Int, extraDescription: String) {
+            switch (index, extraDescription) {
+            case (0, _):
+                self = .low
+                
+            case (1, _):
+                self = .high
+                
+            case (2, let description):
+                self = .other(description: description)
+                
+            case (_, _):
+                return nil
+            }
+        }
     }
     
-    enum AccentType: Int {
+    enum AccentType {
         case saoPauloCapital
         case saoPauloInterior
         case rioDeJaneiroCapital
         case rioDeJaneiroInterior
         case portoAlegre
         case beloHorizonte
-        case other
+        case other(description: String)
         
         var label: String {
             switch self {
@@ -69,41 +87,44 @@ struct VoiceData {
                 AccentType.rioDeJaneiroInterior.label,
                 AccentType.portoAlegre.label,
                 AccentType.beloHorizonte.label,
-                AccentType.other.label
+                AccentType.other(description: "").label
             ]
         }
         
-        init?(label: String) {
-            switch label {
-            case AccentType.saoPauloCapital.label:
+        
+        init?(index: Int, extraDescription: String) {
+            switch (index, extraDescription) {
+            case (0, _):
                 self = .saoPauloCapital
                 
-            case AccentType.saoPauloInterior.label:
+            case (1, _):
                 self = .saoPauloInterior
                 
-            case AccentType.rioDeJaneiroCapital.label:
+            case (2, _):
                 self = .rioDeJaneiroCapital
                 
-            case AccentType.rioDeJaneiroInterior.label:
+            case (3, _):
                 self = .rioDeJaneiroInterior
                 
-            case AccentType.portoAlegre.label:
+            case (4, _):
                 self = .portoAlegre
                 
-            case AccentType.beloHorizonte.label:
+            case (5, _):
                 self = .beloHorizonte
                 
-            case AccentType.other.label:
-                self = .other
+            case (6, let description):
+                self = .other(description: description)
                 
-            default:
+            case (_, _):
                 return nil
             }
         }
     }
     
-    enum PersonalityType: Int {
-        case extrovert, shy, other
+    enum PersonalityType {
+        case extrovert
+        case shy
+        case other(description: String)
         
         var label: String {
             switch self {
@@ -119,21 +140,25 @@ struct VoiceData {
         }
         
         static var items: [String] {
-            return [PersonalityType.extrovert.label, PersonalityType.shy.label, PersonalityType.other.label]
+            return [
+                PersonalityType.extrovert.label,
+                PersonalityType.shy.label,
+                PersonalityType.other(description: "").label
+            ]
         }
         
-        init?(label: String) {
-            switch label {
-            case PersonalityType.extrovert.label:
+        init?(index: Int, extraDescription: String = "") {
+            switch (index, extraDescription) {
+            case (0, _):
                 self = .extrovert
                 
-            case PersonalityType.shy.label:
+            case (1, _):
                 self = .shy
                 
-            case PersonalityType.other.label:
-                self = .other
+            case (2, let description):
+                self = .other(description: description)
                 
-            default:
+            case (_, _):
                 return nil
             }
         }
