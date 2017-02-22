@@ -12,8 +12,11 @@ final class DecimalTextFieldCell: TextFieldCell {
     
     var doubleValue: Double? {
         guard let text = textValue else { return nil }
-        return Double(text)
+        let double = DecimalTextFieldCell.numberFormatter.number(from: text)?.doubleValue
+        return double
     }
+    
+    static let numberFormatter = NumberFormatter()
     
     init() {
         super.init()
