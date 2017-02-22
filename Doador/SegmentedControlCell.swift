@@ -30,7 +30,6 @@ final class SegmentedControlCell: UITableViewCell, DisplaysExtraTextField, UITex
         }
     }
     
-    var displaysExtraTextFieldOnLastItemSelection: Bool = false
     var heightDidChange: ((Bool) -> Void)?
     
     var placeholder: String = "" {
@@ -75,6 +74,8 @@ final class SegmentedControlCell: UITableViewCell, DisplaysExtraTextField, UITex
         }
     }
     
+    let displaysExtraTextFieldOnLastItemSelection: Bool
+    
     private var isLastItemSelected: Bool {
         return selectedIndex == items.count - 1
     }
@@ -108,7 +109,8 @@ final class SegmentedControlCell: UITableViewCell, DisplaysExtraTextField, UITex
         fatalError()
     }
     
-    init() {
+    init(displaysExtraTextFieldOnLastItemSelection: Bool = false) {
+        self.displaysExtraTextFieldOnLastItemSelection = displaysExtraTextFieldOnLastItemSelection
         super.init(style: .default, reuseIdentifier: String(describing: UITableViewCell.self))
         
         setConstraints()
@@ -126,7 +128,12 @@ final class SegmentedControlCell: UITableViewCell, DisplaysExtraTextField, UITex
         innerStackView.translatesAutoresizingMaskIntoConstraints = false
         innerStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
         innerStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
-        innerStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
+        
+        if displaysExtraTextFieldOnLastItemSelection {
+            innerStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
+        } else {
+            innerStackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        }
         
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.topAnchor.constraint(equalTo: innerStackView.bottomAnchor, constant: 16).isActive = true

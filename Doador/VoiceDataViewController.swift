@@ -82,9 +82,8 @@ final class VoiceDataViewController: UITableViewController {
             
             switch row {
             case .voiceType:
-                let cell = SegmentedControlCell()
+                let cell = SegmentedControlCell(displaysExtraTextFieldOnLastItemSelection: true)
                 cell.labelText = Resources.Text.Cells.VoiceDataForm.voiceType.label
-                cell.displaysExtraTextFieldOnLastItemSelection = true
                 cell.items = [
                     VoiceData.VoiceType.low.label,
                     VoiceData.VoiceType.high.label,

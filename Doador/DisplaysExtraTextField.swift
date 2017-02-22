@@ -9,6 +9,6 @@
 import Foundation
 
 protocol DisplaysExtraTextField {
-    var displaysExtraTextFieldOnLastItemSelection: Bool { get set }
+    var displaysExtraTextFieldOnLastItemSelection: Bool { get }
     var heightDidChange: ((Bool) -> Void)? { get set }
 }
