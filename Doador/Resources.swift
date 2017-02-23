@@ -27,7 +27,10 @@ enum Resources {
         
         case termsAndConditions = "Termos de autorização de uso de voz"
         
+        case findDonatorTermsAndConditions = "Para encontrar um pessoa com uma voz compatível é necessário preencher um formulário com características físicas e regionais.\nAlém disso, se a pessoa conseguir emitir algum som, este auxiliará na busca do doador."
+        
         case recordSentencesDescription = "Grave as seguintes frases:"
+        case findDonatorRecordSentencesDescription = "Grave o som que a pessoa conseguir emitir"
         
         case sentencesToRecord = "Érica tomou suco de pêra \nAgora é hora de acabar \nSônia sabe sambar sozinha \nMinha mãe namorou um anjo \nOlha lá, chama o avião azul \nPapai trouxe pipoca quente"
         
@@ -36,6 +39,8 @@ enum Resources {
         case vowelsToRecord = "A, AAAAAAAAAA \nÉ, ÉÉÉÉÉÉÉÉÉÉÉÉ \nÊ, ÊÊÊÊÊÊÊÊÊÊÊÊ \nI, IIIIIIIIIIIIIIIII \nÓ, ÓÓÓÓÓÓÓÓÓ \nÔ, ÔÔÔÔÔÔÔÔÔ \nU, UUUUUUUUU"
         
         case acknowledgment = "Obrigado pela sua doação! \nAs frases que você gravou contém todos os \nfonemas da língua portuguesa e permitem-nos reconstruir \ntodas palavras do nosso vocabulário. \n\nCaso haja um receptor compatível entraremos em contato."
+        
+        case findDonatorAcknowledgment = "Obrigado!\nEntraremos em contato com possíveis doadores para sua escolha.\nQualquer dúvida entre em contato conosco.\ncontato@soulvox.co"
         
         enum Buttons {
             case accept, `continue`, cancel, donateVoice, findDonator, startOver

@@ -9,23 +9,38 @@
 import UIKit
 import Keith
 
-final class RecordAudioCoordinator {
-    
+final class RecordAudioCoordinator {    
     fileprivate weak var navigationController: UINavigationController?
+    fileprivate let flow: Flow
     fileprivate let sentencesRecordAudioViewController: RecordAudioViewController
     fileprivate var vowelsRecordAudioViewController: RecordAudioViewController?
     
     fileprivate var acknowledgmentCoordinator: AcknowledgmentCoordinator?
     
-    init(navigationController: UINavigationController?) {
+    init(navigationController: UINavigationController?, flow: Flow) {
         self.navigationController = navigationController
+        self.flow = flow
+        
+        let description: String
+        let textToRecord: String
+        
+        switch flow {
+        case .donateVoice:
+            description = Resources.Text.recordSentencesDescription.rawValue
+            textToRecord = Resources.Text.sentencesToRecord.rawValue
+            
+        case .findDonator:
+            description = Resources.Text.findDonatorRecordSentencesDescription.rawValue
+            textToRecord = ""
+        }
         
         self.sentencesRecordAudioViewController =
             RecordAudioViewController(
                 audioRecorder: AudioRecorder(),
                 playbackController: PlaybackController(),
-                descriptionLabelText: Resources.Text.recordSentencesDescription.rawValue,
-                textToRecordLabelText: Resources.Text.sentencesToRecord.rawValue)
+                descriptionLabelText: description,
+                textToRecordLabelText: textToRecord
+        )
         
         self.sentencesRecordAudioViewController.delegate = self
     }
@@ -37,24 +52,34 @@ final class RecordAudioCoordinator {
 
 extension RecordAudioCoordinator: RecordAudioViewControllerDelegate {
     func submit(recordAudioViewController: RecordAudioViewController, recordedAudioUrl: URL) {
-        if recordAudioViewController === self.sentencesRecordAudioViewController {
-            
-            if self.vowelsRecordAudioViewController == nil {
-                self.vowelsRecordAudioViewController =
-                    RecordAudioViewController(
-                        audioRecorder: AudioRecorder(),
-                        playbackController: PlaybackController(),
-                        descriptionLabelText: Resources.Text.recordVowelsDescription.rawValue,
-                        textToRecordLabelText: Resources.Text.vowelsToRecord.rawValue)
+        switch flow {
+        case .donateVoice:
+            if recordAudioViewController === self.sentencesRecordAudioViewController {
                 
-                self.vowelsRecordAudioViewController?.delegate = self
+                if self.vowelsRecordAudioViewController == nil {
+                    self.vowelsRecordAudioViewController =
+                        RecordAudioViewController(
+                            audioRecorder: AudioRecorder(),
+                            playbackController: PlaybackController(),
+                            descriptionLabelText: Resources.Text.recordVowelsDescription.rawValue,
+                            textToRecordLabelText: Resources.Text.vowelsToRecord.rawValue)
+                    
+                    self.vowelsRecordAudioViewController?.delegate = self
+                }
+                
+                self.navigationController?.show(vowelsRecordAudioViewController!, sender: nil)
+            
+            } else if recordAudioViewController === self.vowelsRecordAudioViewController {
+                if self.acknowledgmentCoordinator == nil {
+                    self.acknowledgmentCoordinator = AcknowledgmentCoordinator(navigationController: navigationController, flow: flow)
+                }
+                
+                self.acknowledgmentCoordinator?.showViewController()
             }
             
-            self.navigationController?.show(vowelsRecordAudioViewController!, sender: nil)
-        
-        } else if recordAudioViewController === self.vowelsRecordAudioViewController {
+        case .findDonator:
             if self.acknowledgmentCoordinator == nil {
-                self.acknowledgmentCoordinator = AcknowledgmentCoordinator(navigationController: navigationController)
+                self.acknowledgmentCoordinator = AcknowledgmentCoordinator(navigationController: navigationController, flow: flow)
             }
             
             self.acknowledgmentCoordinator?.showViewController()

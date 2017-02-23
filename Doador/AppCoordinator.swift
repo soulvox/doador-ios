@@ -15,7 +15,7 @@ final class AppCoordinator {
     let navigationController: UINavigationController
     
     fileprivate var donateVoiceCoordinator: DonateVoiceCoordinator?
-    fileprivate var formCoordinator: FormCoordinator?
+    fileprivate var findDonatorCoordinator: FindDonatorCoordinator?
     
     init() {
         let mainViewController = MainViewController()
@@ -32,6 +32,7 @@ extension AppCoordinator: MainViewControllerDelegate {
     }
     
     func findDonator() {
-        
+        self.findDonatorCoordinator = FindDonatorCoordinator(navigationController: navigationController)
+        self.rootViewController.show(navigationController, sender: nil)
     }
 }

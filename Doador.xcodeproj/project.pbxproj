@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		080FFC761E5BCA4300025B4F /* DisplaysExtraTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080FFC751E5BCA4300025B4F /* DisplaysExtraTextField.swift */; };
+		081622FB1E5E60A30006BBE5 /* FindDonatorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081622FA1E5E60A30006BBE5 /* FindDonatorCoordinator.swift */; };
+		081622FD1E5E60AE0006BBE5 /* FindDonatorTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081622FC1E5E60AE0006BBE5 /* FindDonatorTermsViewController.swift */; };
+		081622FF1E5E650D0006BBE5 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081622FE1E5E650D0006BBE5 /* Flow.swift */; };
 		0819F5DC1E3AA260006D6CBD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0819F5DB1E3AA260006D6CBD /* AppDelegate.swift */; };
 		0819F5E31E3AA260006D6CBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0819F5E21E3AA260006D6CBD /* Assets.xcassets */; };
 		0819F5E61E3AA260006D6CBD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0819F5E41E3AA260006D6CBD /* LaunchScreen.storyboard */; };
@@ -68,6 +71,9 @@
 /* Begin PBXFileReference section */
 		0674CE8EC66E5CBBA56E9956 /* Pods-DoadorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoadorTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DoadorTests/Pods-DoadorTests.debug.xcconfig"; sourceTree = "<group>"; };
 		080FFC751E5BCA4300025B4F /* DisplaysExtraTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplaysExtraTextField.swift; sourceTree = "<group>"; };
+		081622FA1E5E60A30006BBE5 /* FindDonatorCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindDonatorCoordinator.swift; sourceTree = "<group>"; };
+		081622FC1E5E60AE0006BBE5 /* FindDonatorTermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindDonatorTermsViewController.swift; sourceTree = "<group>"; };
+		081622FE1E5E650D0006BBE5 /* Flow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flow.swift; sourceTree = "<group>"; };
 		0819F5D81E3AA260006D6CBD /* Doador.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Doador.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0819F5DB1E3AA260006D6CBD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0819F5E21E3AA260006D6CBD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -147,6 +153,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		081622F71E5E60330006BBE5 /* FindDonator */ = {
+			isa = PBXGroup;
+			children = (
+				081622FA1E5E60A30006BBE5 /* FindDonatorCoordinator.swift */,
+				081622FC1E5E60AE0006BBE5 /* FindDonatorTermsViewController.swift */,
+			);
+			name = FindDonator;
+			sourceTree = "<group>";
+		};
 		0819F5CF1E3AA260006D6CBD = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +220,7 @@
 				0819F5DB1E3AA260006D6CBD /* AppDelegate.swift */,
 				08F23B9C1E3AA6FD00D23224 /* AppCoordinator.swift */,
 				08F23BC91E3D914000D23224 /* MainViewController.swift */,
+				081622FE1E5E650D0006BBE5 /* Flow.swift */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -273,6 +289,7 @@
 			children = (
 				08F23BBB1E3D4D7700D23224 /* Application */,
 				08F23BD31E3D9F0000D23224 /* DonateVoice */,
+				081622F71E5E60330006BBE5 /* FindDonator */,
 				08F23BBC1E3D4D9C00D23224 /* Form */,
 				08F23BC81E3D7C1E00D23224 /* RecordAudio */,
 				08F23BE31E3E116400D23224 /* Acknowledgment */,
@@ -630,9 +647,11 @@
 				0819F5DC1E3AA260006D6CBD /* AppDelegate.swift in Sources */,
 				08F23BD21E3D9EE900D23224 /* DonateVoiceTermsViewController.swift in Sources */,
 				08F23BC01E3D4DE000D23224 /* VoiceData.swift in Sources */,
+				081622FD1E5E60AE0006BBE5 /* FindDonatorTermsViewController.swift in Sources */,
 				0830FFD71E47CC1A00923E23 /* UITextField.swift in Sources */,
 				08F23BF01E3E59DF00D23224 /* PickerCell.swift in Sources */,
 				08F23BCA1E3D914000D23224 /* MainViewController.swift in Sources */,
+				081622FF1E5E650D0006BBE5 /* Flow.swift in Sources */,
 				08F23BEA1E3E1AC700D23224 /* UIViewController.swift in Sources */,
 				08F23BBA1E3D4C4600D23224 /* PersonalDataViewController.swift in Sources */,
 				08F23BCC1E3D925F00D23224 /* UIStackView.swift in Sources */,
@@ -644,6 +663,7 @@
 				08F23BBE1E3D4DB800D23224 /* VoiceDataViewController.swift in Sources */,
 				089F348D1E42B58300F8772F /* NumberTextFieldCell.swift in Sources */,
 				08F23BE01E3E108600D23224 /* AcknowledgmentViewController.swift in Sources */,
+				081622FB1E5E60A30006BBE5 /* FindDonatorCoordinator.swift in Sources */,
 				08F23BE21E3E10A100D23224 /* AcknowledgmentCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

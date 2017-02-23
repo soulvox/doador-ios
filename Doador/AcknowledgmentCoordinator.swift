@@ -10,12 +10,25 @@ import UIKit
 
 final class AcknowledgmentCoordinator {
     
+    fileprivate let flow: Flow
     fileprivate weak var navigationController: UINavigationController?
     fileprivate let acknowledgmentViewController: AcknowledgmentViewController
     
-    init(navigationController: UINavigationController?) {
+    init(navigationController: UINavigationController?, flow: Flow) {
+        self.flow = flow
         self.navigationController = navigationController
-        self.acknowledgmentViewController = AcknowledgmentViewController()
+        
+        let text: String
+        
+        switch flow {
+        case .donateVoice:
+            text = Resources.Text.acknowledgment.rawValue
+            
+        case .findDonator:
+            text = Resources.Text.findDonatorAcknowledgment.rawValue
+        }
+        
+        self.acknowledgmentViewController = AcknowledgmentViewController(acknowledgmentLabelText: text)
         self.acknowledgmentViewController.delegate = self
     }
     

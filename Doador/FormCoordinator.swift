@@ -11,6 +11,7 @@ import UIKit
 final class FormCoordinator {
     
     fileprivate weak var navigationController: UINavigationController?
+    fileprivate let flow: Flow
     fileprivate let personalDataViewController: PersonalDataViewController
     fileprivate var voiceDataViewController: VoiceDataViewController?
     
@@ -19,7 +20,8 @@ final class FormCoordinator {
     
     fileprivate var recordAudioCoordinator: RecordAudioCoordinator?
     
-    init(navigationController: UINavigationController?) {
+    init(navigationController: UINavigationController?, flow: Flow) {
+        self.flow = flow
         self.personalDataViewController = PersonalDataViewController(style: .grouped)
         self.navigationController = navigationController
         self.personalDataViewController.delegate = self
@@ -38,12 +40,22 @@ extension FormCoordinator: PersonalDataViewControllerDelegate {
     func submit(personalData: PersonalData) {
         self.personalData = personalData
         
-        if self.voiceDataViewController == nil {
-            self.voiceDataViewController = VoiceDataViewController(style: .grouped)
-            self.voiceDataViewController?.delegate = self
+        switch flow {
+        case .donateVoice:
+            if self.voiceDataViewController == nil {
+                self.voiceDataViewController = VoiceDataViewController(style: .grouped)
+                self.voiceDataViewController?.delegate = self
+            }
+            
+            self.navigationController?.pushViewController(voiceDataViewController!, animated: true)
+            
+        case .findDonator:
+            if self.recordAudioCoordinator == nil {
+                self.recordAudioCoordinator = RecordAudioCoordinator(navigationController: navigationController, flow: flow)
+            }
+            
+            self.recordAudioCoordinator?.showViewController()
         }
-        
-        self.navigationController?.pushViewController(voiceDataViewController!, animated: true)
     }
 }
 
@@ -52,7 +64,7 @@ extension FormCoordinator: VoiceDataViewControllerDelegate {
         self.voiceData = voiceData
         
         if self.recordAudioCoordinator == nil {
-            self.recordAudioCoordinator = RecordAudioCoordinator(navigationController: navigationController)
+            self.recordAudioCoordinator = RecordAudioCoordinator(navigationController: navigationController, flow: flow)
         }
         
         self.recordAudioCoordinator?.showViewController()
