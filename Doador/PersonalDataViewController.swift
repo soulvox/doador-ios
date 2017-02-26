@@ -97,7 +97,7 @@ final class PersonalDataViewController: UITableViewController, TextFieldCellDele
             
             switch row {
             case .name:
-                let cell = TextFieldCell()
+                let cell = TextFieldCell(traitCollection: traitCollection)
                 cell.labelText = Resources.Text.Cells.PersonalDataForm.name.label
                 cell.placeholder = Resources.Text.Cells.PersonalDataForm.name.placeholder
                 cell.keyboardType = .default
@@ -108,7 +108,7 @@ final class PersonalDataViewController: UITableViewController, TextFieldCellDele
                 return cell
                 
             case .age:
-                let cell = NumberTextFieldCell()
+                let cell = NumberTextFieldCell(traitCollection: traitCollection)
                 cell.labelText = Resources.Text.Cells.PersonalDataForm.age.label
                 cell.placeholder = Resources.Text.Cells.PersonalDataForm.age.placeholder
                 cell.delegate = self
@@ -116,14 +116,14 @@ final class PersonalDataViewController: UITableViewController, TextFieldCellDele
                 return cell
                 
             case .gender:
-                let cell = SegmentedControlCell()
+                let cell = SegmentedControlCell(traitCollection: traitCollection)
                 cell.labelText = Resources.Text.Cells.PersonalDataForm.gender.label
                 cell.items = [PersonalData.Gender.male.label, PersonalData.Gender.female.label]
                 genderCell = cell
                 return cell
                 
             case .weight:
-                let cell = DecimalTextFieldCell()
+                let cell = DecimalTextFieldCell(traitCollection: traitCollection)
                 cell.labelText = Resources.Text.Cells.PersonalDataForm.weight.label
                 cell.placeholder = Resources.Text.Cells.PersonalDataForm.weight.placeholder
                 cell.delegate = self
@@ -131,7 +131,7 @@ final class PersonalDataViewController: UITableViewController, TextFieldCellDele
                 return cell
                 
             case .height:
-                let cell = DecimalTextFieldCell()
+                let cell = DecimalTextFieldCell(traitCollection: traitCollection)
                 cell.labelText = Resources.Text.Cells.PersonalDataForm.height.label
                 cell.placeholder = Resources.Text.Cells.PersonalDataForm.height.placeholder
                 cell.delegate = self
@@ -145,13 +145,13 @@ final class PersonalDataViewController: UITableViewController, TextFieldCellDele
             switch row {
             case .email:
                 let validator = EmailValidator()
-                let cell = EmailTextFieldCell(validator: validator)
+                let cell = EmailTextFieldCell(validator: validator, traitCollection: traitCollection)
                 cell.delegate = self
                 emailCell = cell
                 return cell
                 
             case .phone:
-                let cell = PhoneTextFieldCell()
+                let cell = PhoneTextFieldCell(traitCollection: traitCollection)
                 cell.delegate = self
                 phoneCell = cell
                 return cell

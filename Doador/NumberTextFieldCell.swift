@@ -15,8 +15,8 @@ final class NumberTextFieldCell: TextFieldCell {
         return Int(text)
     }
     
-    init() {
-        super.init()
+    init(traitCollection: UITraitCollection) {
+        super.init(traitCollection: traitCollection)
         
         keyboardType = .numberPad
         autocapitalizationType = .none

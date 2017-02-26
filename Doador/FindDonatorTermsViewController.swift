@@ -63,7 +63,15 @@ final class FindDonatorTermsViewController: UIViewController {
     
     private func setupSubviews() {
         containerStackView.addArrangedSubview(termsLabel)
-        containerStackView.pinToEdges(ofViewController: self)
+        
+        switch traitCollection.horizontalSizeClass {
+        case .regular:
+            let insets = UIEdgeInsets(top: 20, left: 36, bottom: -20, right: -36)
+            containerStackView.pinToEdges(ofViewController: self, insets: insets)
+            
+        case .compact, .unspecified:
+            containerStackView.pinToEdges(ofViewController: self)
+        }
         
         navigationItem.leftBarButtonItem = dismissButton
         navigationItem.rightBarButtonItem = continueButton

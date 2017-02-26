@@ -81,6 +81,7 @@ class TextFieldCell: UITableViewCell, UITextFieldDelegate, Validating {
         label.textColor = UIColor.white
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.7
+        label.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .horizontal)
         return label
     }()
     
@@ -90,25 +91,34 @@ class TextFieldCell: UITableViewCell, UITextFieldDelegate, Validating {
         fatalError()
     }
     
-    init(textField: UITextField = UITextField.plain) {
+    init(textField: UITextField = UITextField.plain, traitCollection: UITraitCollection) {
         self.textField = textField
         
         super.init(style: .default, reuseIdentifier: String(describing: TextFieldCell.self))
         
-        setConstraints()
+        setConstraints(usingTraitCollection: traitCollection)
         setAppearance()
         
         textField.delegate = self
     }
     
-    private func setConstraints() {
+    private func setConstraints(usingTraitCollection traitCollection: UITraitCollection) {
         stackView.distribution = .fill
         
         stackView.addArrangedSubview(label)
         stackView.addArrangedSubview(textField)
         stackView.pinToEdges(ofView: self)
         
-        let textFieldWidth = (bounds.size.width / 3) * 2
+        let textFieldWidth: CGFloat = {
+            switch traitCollection.horizontalSizeClass {
+            case .regular:
+                return bounds.size.width * 1.3
+                
+            case .compact, .unspecified:
+                return (bounds.size.width / 5) * 3
+            }
+        }()
+        
         textField.widthAnchor.constraint(equalToConstant: textFieldWidth).isActive = true
     }
     

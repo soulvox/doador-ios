@@ -18,8 +18,8 @@ final class DecimalTextFieldCell: TextFieldCell {
     
     static let numberFormatter = NumberFormatter()
     
-    init() {
-        super.init()
+    init(traitCollection: UITraitCollection) {
+        super.init(traitCollection: traitCollection)
         
         keyboardType = .decimalPad
         autocapitalizationType = .none

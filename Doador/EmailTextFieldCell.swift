@@ -12,10 +12,10 @@ final class EmailTextFieldCell: TextFieldCell {
     
     let validator: EmailValidating
 
-    init(validator: EmailValidating) {
+    init(validator: EmailValidating, traitCollection: UITraitCollection) {
         self.validator = validator
         
-        super.init()
+        super.init(traitCollection: traitCollection)
         
         labelText = Resources.Text.Cells.PersonalDataForm.email.label
         placeholder = Resources.Text.Cells.PersonalDataForm.email.placeholder

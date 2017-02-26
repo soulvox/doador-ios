@@ -52,6 +52,17 @@ final class AcknowledgmentViewController: UIViewController {
         containerStackView.addArrangedSubview(acknowledgmentLabel)
         containerStackView.addArrangedSubview(startOverButton)
         containerStackView.pinToEdges(ofViewController: self)
+
+        switch traitCollection.horizontalSizeClass {
+        case .regular:
+            containerStackView.alignment = .center
+            startOverButton.leadingAnchor.constraint(equalTo: containerStackView.leadingAnchor, constant: 75).isActive = true
+            startOverButton.trailingAnchor.constraint(equalTo: containerStackView.trailingAnchor, constant: -75).isActive = true
+            
+        case .compact, .unspecified:
+            containerStackView.alignment = .fill
+            break
+        }
     }
     
     @objc private func startOver() {

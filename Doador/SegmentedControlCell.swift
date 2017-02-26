@@ -109,16 +109,18 @@ final class SegmentedControlCell: UITableViewCell, DisplaysExtraTextField, UITex
         fatalError()
     }
     
-    init(displaysExtraTextFieldOnLastItemSelection: Bool = false) {
+    init(displaysExtraTextFieldOnLastItemSelection: Bool = false, axis: UILayoutConstraintAxis = .horizontal, traitCollection: UITraitCollection) {
         self.displaysExtraTextFieldOnLastItemSelection = displaysExtraTextFieldOnLastItemSelection
         super.init(style: .default, reuseIdentifier: String(describing: UITableViewCell.self))
         
-        setConstraints()
+        innerStackView.axis = axis
+        
+        setConstraints(usingTraitCollection: traitCollection)
         setAppearance()
         setActions()
     }
     
-    private func setConstraints() {
+    private func setConstraints(usingTraitCollection traitCollection: UITraitCollection) {
         innerStackView.addArrangedSubview(label)
         innerStackView.addArrangedSubview(segmentedControl)
         
@@ -142,7 +144,16 @@ final class SegmentedControlCell: UITableViewCell, DisplaysExtraTextField, UITex
         
         textField.isHidden = true
         
-        let segmentedControlWidth = (bounds.size.width / 3) * 2
+        let segmentedControlWidth: CGFloat = {
+            switch traitCollection.horizontalSizeClass {
+            case .regular:
+                return bounds.size.width * 1.3
+                
+            case .compact, .unspecified:
+                return (bounds.size.width / 5) * 3
+            }
+        }()
+        
         segmentedControl.widthAnchor.constraint(equalToConstant: segmentedControlWidth).isActive = true
     }
     

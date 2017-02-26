@@ -43,6 +43,10 @@ final class VoiceDataViewController: UITableViewController {
     private var accentCellExpanded = false
     private var personalityTypeCellExpanded = false
     
+    private lazy var smallWidth: Bool = {
+        return UIScreen.main.bounds.width < 375
+    }()
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -82,7 +86,8 @@ final class VoiceDataViewController: UITableViewController {
             
             switch row {
             case .voiceType:
-                let cell = SegmentedControlCell(displaysExtraTextFieldOnLastItemSelection: true)
+                let axis: UILayoutConstraintAxis = smallWidth ? .vertical : .horizontal
+                let cell = SegmentedControlCell(displaysExtraTextFieldOnLastItemSelection: true, axis: axis, traitCollection: traitCollection)
                 cell.labelText = Resources.Text.Cells.VoiceDataForm.voiceType.label
                 cell.items = [
                     VoiceData.VoiceType.low.label,
@@ -150,6 +155,10 @@ final class VoiceDataViewController: UITableViewController {
             
             switch row {
             case .voiceType:
+                if smallWidth {
+                    return voiceTypeCellExpanded ? 160 : 120
+                }
+                
                 return voiceTypeCellExpanded ? 120 : 80
                 
             case .accent:

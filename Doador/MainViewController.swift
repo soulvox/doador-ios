@@ -30,6 +30,7 @@ final class MainViewController: UIViewController {
     private let descriptionLabel: UILabel = {
         let label = UILabel.descriptiveLabel
         label.text = Resources.Text.soulvoxIntro.rawValue
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
@@ -70,7 +71,18 @@ final class MainViewController: UIViewController {
         buttonsStackView.addArrangedSubview(donateVoiceButton)
         buttonsStackView.addArrangedSubview(findDonatorButton)
         containerStackView.addArrangedSubview(buttonsStackView)
-        containerStackView.pinToEdges(ofViewController: self)
+        
+        switch traitCollection.horizontalSizeClass {
+        case .regular:
+            buttonsStackView.leadingAnchor.constraint(equalTo: containerStackView.leadingAnchor, constant: 75).isActive = true
+            buttonsStackView.trailingAnchor.constraint(equalTo: containerStackView.trailingAnchor, constant: -75).isActive = true
+            
+            let insets = UIEdgeInsets(top: 20, left: 36, bottom: -20, right: -36)
+            containerStackView.pinToEdges(ofViewController: self, insets: insets)
+        
+        case .compact, .unspecified:
+            containerStackView.pinToEdges(ofViewController: self)
+        }
     }
     
     @objc private func donateVoice() {

@@ -10,8 +10,8 @@ import UIKit
 
 final class PhoneTextFieldCell: TextFieldCell {
     
-    init() {
-        super.init(textField: UITextField.phoneNumber)
+    init(traitCollection: UITraitCollection) {
+        super.init(textField: UITextField.phoneNumber, traitCollection: traitCollection)
         
         labelText = Resources.Text.Cells.PersonalDataForm.phone.label
         placeholder = Resources.Text.Cells.PersonalDataForm.phone.placeholder
